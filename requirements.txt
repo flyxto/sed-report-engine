@@ -1,0 +1,3 @@
+# Same runtime as sed_reporting. `reporting` is imported from the parent
+# folder, not from pip (see sed_reporting/README.md).
+-r ../sed_reporting/requirements.txt
