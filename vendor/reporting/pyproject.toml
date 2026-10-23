@@ -1,0 +1,30 @@
+[project]
+name = "reporting"
+version = "0.2.0"
+description = "Shared dual-medium (HTML + PDF) structural report engine"
+requires-python = ">=3.12"
+dependencies = [
+    "reportlab>=4.0",
+    "svglib>=1.5",
+    "pypdf>=4.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# The repo root IS the `reporting` package (no nested reporting/ folder).
+[tool.setuptools]
+packages = ["reporting", "reporting.core", "reporting.engine", "reporting.components"]
+package-dir = {"reporting" = "."}
+
+[tool.setuptools.package-data]
+reporting = ["assets/fonts/*.ttf", "assets/fonts/LICENSE_DEJAVU"]
+
+[tool.ruff]
+line-length = 200
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]

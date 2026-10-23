@@ -1,0 +1,18 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Actions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "actions"
+  ],
+  "title": "SirActions",
+  "type": "object"
+}

@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+out/
+.DS_Store
+
+# Reference material (real jobs with client details, firm templates, published
+# guidelines): local only.
+samples/
+
+# The dev edit page's working copy of the sample project.
+data/project_sample.edited.json
+
+# Claude Code internals (the project memory in .claude/memory/ is committed).
+.claude/.cc-writes/
+.claude/settings.local.json

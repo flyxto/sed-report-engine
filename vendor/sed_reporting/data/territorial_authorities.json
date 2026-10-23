@@ -1,0 +1,747 @@
+{
+  "territorialAuthorities": [
+    {
+      "name": "Far North District Council",
+      "territory": "Far North",
+      "authority": "District Council",
+      "physicalAddress": "5 Memorial Avenue, Kaikohe",
+      "postalAddress": [
+        "Private Bag 752",
+        "Kaikohe 0440"
+      ],
+      "website": "https://www.fndc.govt.nz/Contact-council"
+    },
+    {
+      "name": "Whangārei District Council",
+      "territory": "Whangārei",
+      "authority": "District Council",
+      "physicalAddress": "Te Iwitahi, 9 Rust Avenue, Whangārei",
+      "postalAddress": [
+        "Private Bag 9023",
+        "Te Mai",
+        "Whangārei 0143"
+      ],
+      "website": "https://www.wdc.govt.nz/Council/Contact-us"
+    },
+    {
+      "name": "Kaipara District Council",
+      "territory": "Kaipara",
+      "authority": "District Council",
+      "physicalAddress": "42 Hokianga Road, Dargaville 0310",
+      "postalAddress": [
+        "Private Bag 1001",
+        "Dargaville 0340"
+      ],
+      "website": "https://www.kaipara.govt.nz/contact-us"
+    },
+    {
+      "name": "Auckland Council",
+      "territory": "Auckland",
+      "authority": "Council",
+      "physicalAddress": "Basement 1, 135 Albert Street, Auckland 1010",
+      "postalAddress": [
+        "Private Bag 92300",
+        "Victoria Street West",
+        "Auckland 1142"
+      ],
+      "website": "https://www.aucklandcouncil.govt.nz/en/report-problem/our-contact-details.html"
+    },
+    {
+      "name": "Thames-Coromandel District Council",
+      "territory": "Thames-Coromandel",
+      "authority": "District Council",
+      "physicalAddress": "515 Mackay Street, Thames 3500",
+      "postalAddress": [
+        "Private Bag 1001",
+        "Thames 3540"
+      ],
+      "website": "https://www.tcdc.govt.nz/Contact-Us/Visit-Our-Offices"
+    },
+    {
+      "name": "Hauraki District Council",
+      "territory": "Hauraki",
+      "authority": "District Council",
+      "physicalAddress": "1 William Street, Paeroa 3600",
+      "postalAddress": [
+        "PO Box 17",
+        "Paeroa 3640"
+      ],
+      "website": "https://www.hauraki-dc.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Waikato District Council",
+      "territory": "Waikato",
+      "authority": "District Council",
+      "physicalAddress": "15 Galileo Street, Ngāruawāhia 3720",
+      "postalAddress": [
+        "Private Bag 544",
+        "Ngāruawāhia 3742"
+      ],
+      "website": "https://www.waikatodistrict.govt.nz/contact-us"
+    },
+    {
+      "name": "Matamata-Piako District Council",
+      "territory": "Matamata-Piako",
+      "authority": "District Council",
+      "physicalAddress": "35 Kenrick Street, Te Aroha 3320",
+      "postalAddress": [
+        "PO Box 266",
+        "Te Aroha 3342"
+      ],
+      "website": "https://www.mpdc.govt.nz/contact-us"
+    },
+    {
+      "name": "Hamilton City Council",
+      "territory": "Hamilton",
+      "authority": "City Council",
+      "physicalAddress": "Municipal Building, Garden Place, Hamilton",
+      "postalAddress": [
+        "Private Bag 3010",
+        "Hamilton 3240"
+      ],
+      "website": "https://hamilton.govt.nz/contact-us"
+    },
+    {
+      "name": "Waipā District Council",
+      "territory": "Waipā",
+      "authority": "District Council",
+      "physicalAddress": "101 Bank Street, Te Awamutu 3800",
+      "postalAddress": [
+        "Private Bag 2402",
+        "Te Awamutu 3840"
+      ],
+      "website": "https://www.waipadc.govt.nz/contact-us/our-contact-details"
+    },
+    {
+      "name": "Ōtorohanga District Council",
+      "territory": "Ōtorohanga",
+      "authority": "District Council",
+      "physicalAddress": "17 Maniapoto Street, Ōtorohanga",
+      "postalAddress": [
+        "PO Box 11",
+        "Ōtorohanga 3940"
+      ],
+      "website": "https://www.otodc.govt.nz/contact-us"
+    },
+    {
+      "name": "South Waikato District Council",
+      "territory": "South Waikato",
+      "authority": "District Council",
+      "physicalAddress": "1-5 Torphin Crescent, Tokoroa 3420",
+      "postalAddress": [
+        "Private Bag 7",
+        "Tokoroa 3444"
+      ],
+      "website": "https://www.southwaikato.govt.nz/our-council/council-contacts"
+    },
+    {
+      "name": "Waitomo District Council",
+      "territory": "Waitomo",
+      "authority": "District Council",
+      "physicalAddress": "Customer Service Centre, 160 Rora Street, Te Kūiti 3910",
+      "postalAddress": [
+        "PO Box 404",
+        "Te Kūiti 3941"
+      ],
+      "website": "https://www.waitomo.govt.nz/contact/"
+    },
+    {
+      "name": "Taupō District Council",
+      "territory": "Taupō",
+      "authority": "District Council",
+      "physicalAddress": "72 Lake Terrace, Taupō 3330",
+      "postalAddress": [
+        "Private Bag 2005",
+        "Taupō 3352"
+      ],
+      "website": "https://www.taupodc.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Western Bay of Plenty District Council",
+      "territory": "Western Bay of Plenty",
+      "authority": "District Council",
+      "physicalAddress": "1484 Cameron Road, Barkes Corner, Greerton, Tauranga",
+      "postalAddress": [
+        "Private Bag 12803",
+        "Tauranga Mail Centre",
+        "Tauranga 3143"
+      ],
+      "website": "https://www.westernbay.govt.nz/council/contact-us/council-locations"
+    },
+    {
+      "name": "Tauranga City Council",
+      "territory": "Tauranga",
+      "authority": "City Council",
+      "physicalAddress": "21 Devonport Road, Tauranga",
+      "postalAddress": [
+        "Private Bag 12022",
+        "Tauranga 3143"
+      ],
+      "website": "https://www.tauranga.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Rotorua District Council",
+      "territory": "Rotorua",
+      "authority": "District Council",
+      "physicalAddress": "Civic Centre, 1061 Haupapa Street, Rotorua",
+      "postalAddress": [
+        "Private Bag 3029",
+        "Rotorua Mail Centre",
+        "Rotorua 3046"
+      ],
+      "website": "https://www.rotorualakescouncil.nz/contact-us"
+    },
+    {
+      "name": "Whakatāne District Council",
+      "territory": "Whakatāne",
+      "authority": "District Council",
+      "physicalAddress": "Civic Centre, 14 Commerce Street, Whakatāne 3120",
+      "postalAddress": [
+        "Private Bag 1002",
+        "Whakatāne 3158"
+      ],
+      "website": "https://www.whakatane.govt.nz/contact-us"
+    },
+    {
+      "name": "Kawerau District Council",
+      "territory": "Kawerau",
+      "authority": "District Council",
+      "physicalAddress": "Ranfurly Court, Kawerau 3127",
+      "postalAddress": [
+        "Private Bag 1004",
+        "Kawerau 3169"
+      ],
+      "website": "https://www.kaweraudc.govt.nz/contact-us"
+    },
+    {
+      "name": "Ōpōtiki District Council",
+      "territory": "Ōpōtiki",
+      "authority": "District Council",
+      "physicalAddress": "108 St John Street, Ōpōtiki 3122",
+      "postalAddress": [
+        "PO Box 44",
+        "Ōpōtiki 3162"
+      ],
+      "website": "https://www.odc.govt.nz/our-council/contact-us"
+    },
+    {
+      "name": "Gisborne District Council",
+      "territory": "Gisborne",
+      "authority": "District Council",
+      "physicalAddress": "15 Fitzherbert Street, Gisborne 4010",
+      "postalAddress": [
+        "PO Box 747",
+        "Gisborne 4040"
+      ],
+      "website": "https://www.gdc.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Wairoa District Council",
+      "territory": "Wairoa",
+      "authority": "District Council",
+      "physicalAddress": "Coronation Square, 97-103 Queen Street, Wairoa 4108",
+      "postalAddress": [
+        "PO Box 54",
+        "Wairoa 4160"
+      ],
+      "website": "https://www.wairoadc.govt.nz/contact-us/"
+    },
+    {
+      "name": "Hastings District Council",
+      "territory": "Hastings",
+      "authority": "District Council",
+      "physicalAddress": "Civic Administration Building, 207 Lyndon Road East, Hastings 4122",
+      "postalAddress": [
+        "Private Bag 9002",
+        "Hastings 4156"
+      ],
+      "website": "https://www.hastingsdc.govt.nz/contact-us/"
+    },
+    {
+      "name": "Napier City Council",
+      "territory": "Napier",
+      "authority": "City Council",
+      "physicalAddress": "215 Hastings Street, Napier 4110",
+      "postalAddress": [
+        "Private Bag 6010",
+        "Napier 4142"
+      ],
+      "website": "https://www.napier.govt.nz/contact-us/"
+    },
+    {
+      "name": "Central Hawke's Bay District Council",
+      "territory": "Central Hawke's Bay",
+      "authority": "District Council",
+      "physicalAddress": "28-32 Ruataniwha Street, Waipawa 4210",
+      "postalAddress": [
+        "PO Box 127",
+        "Waipawa 4240"
+      ],
+      "website": "https://www.chbdc.govt.nz/contact-us/"
+    },
+    {
+      "name": "New Plymouth District Council",
+      "territory": "New Plymouth",
+      "authority": "District Council",
+      "physicalAddress": "Civic Centre, 84 Liardet Street, New Plymouth 4310",
+      "postalAddress": [
+        "Private Bag 2025",
+        "New Plymouth 4342"
+      ],
+      "website": "https://www.npdc.govt.nz/contact-us/"
+    },
+    {
+      "name": "Stratford District Council",
+      "territory": "Stratford",
+      "authority": "District Council",
+      "physicalAddress": "63 Miranda Street, Stratford 4332",
+      "postalAddress": [
+        "PO Box 320",
+        "Stratford 4352"
+      ],
+      "website": "https://www.stratford.govt.nz/contact-us"
+    },
+    {
+      "name": "South Taranaki District Council",
+      "territory": "South Taranaki",
+      "authority": "District Council",
+      "physicalAddress": "105-111 Albion Street, Hāwera 4610",
+      "postalAddress": [
+        "Private Bag 902",
+        "Hāwera 4640"
+      ],
+      "website": "https://www.southtaranaki.com/our-council/contact-us"
+    },
+    {
+      "name": "Ruapehu District Council",
+      "territory": "Ruapehu",
+      "authority": "District Council",
+      "physicalAddress": "59-63 Huia Street, Taumarunui 3920",
+      "postalAddress": [
+        "Private Bag 1001",
+        "Taumarunui 3946"
+      ],
+      "website": "https://www.ruapehudc.govt.nz/our-council/council-contact-information"
+    },
+    {
+      "name": "Whanganui District Council",
+      "territory": "Whanganui",
+      "authority": "District Council",
+      "physicalAddress": "101 Guyton Street, Whanganui 4500",
+      "postalAddress": [
+        "PO Box 637",
+        "Whanganui 4541"
+      ],
+      "website": "https://www.whanganui.govt.nz/Your-Council/About-Whanganui-District-Council/Contact-Us"
+    },
+    {
+      "name": "Rangitikei District Council",
+      "territory": "Rangitikei",
+      "authority": "District Council",
+      "physicalAddress": "46 High Street, Marton 4710",
+      "postalAddress": [
+        "Private Bag 1102",
+        "Marton 4741"
+      ],
+      "website": "https://www.rangitikei.govt.nz/council/about/contact-us"
+    },
+    {
+      "name": "Manawatū District Council",
+      "territory": "Manawatū",
+      "authority": "District Council",
+      "physicalAddress": "135 Manchester Street, Feilding 4702",
+      "postalAddress": [
+        "Private Bag 10001",
+        "Feilding 4743"
+      ],
+      "website": "https://www.mdc.govt.nz/contact-us"
+    },
+    {
+      "name": "Palmerston North City Council",
+      "territory": "Palmerston North",
+      "authority": "City Council",
+      "physicalAddress": "32 Te Marae o Hine – The Square, Palmerston North 4410",
+      "postalAddress": [
+        "Private Bag 11034",
+        "Manawatū Mail Centre",
+        "Palmerston North 4442"
+      ],
+      "website": "https://www.pncc.govt.nz/Contact-us"
+    },
+    {
+      "name": "Tararua District Council",
+      "territory": "Tararua",
+      "authority": "District Council",
+      "physicalAddress": "26 Gordon Street, Dannevirke 4930",
+      "postalAddress": [
+        "PO Box 115",
+        "Dannevirke 4942"
+      ],
+      "website": "https://www.tararuadc.govt.nz/contact-us"
+    },
+    {
+      "name": "Horowhenua District Council",
+      "territory": "Horowhenua",
+      "authority": "District Council",
+      "physicalAddress": "126 Oxford Street, Levin 5510",
+      "postalAddress": [
+        "Private Bag 4002",
+        "Levin 5540"
+      ],
+      "website": "https://www.horowhenua.govt.nz/Council/Contact-Us"
+    },
+    {
+      "name": "Kāpiti Coast District Council",
+      "territory": "Kāpiti Coast",
+      "authority": "District Council",
+      "physicalAddress": "175 Rimu Road, Paraparaumu",
+      "postalAddress": [
+        "Private Bag 60601",
+        "Paraparaumu 5254"
+      ],
+      "website": "https://www.kapiticoast.govt.nz/council/contact-us/contact-council/"
+    },
+    {
+      "name": "Porirua City Council",
+      "territory": "Porirua",
+      "authority": "City Council",
+      "physicalAddress": "16 Cobham Court, Porirua 5022",
+      "postalAddress": [
+        "PO Box 50218",
+        "Porirua 5240"
+      ],
+      "website": "https://poriruacity.govt.nz/contact/contact-us-address/"
+    },
+    {
+      "name": "Upper Hutt City Council",
+      "territory": "Upper Hutt",
+      "authority": "City Council",
+      "physicalAddress": "Civic Centre, 838-842 Fergusson Drive, Upper Hutt 5018",
+      "postalAddress": [
+        "Private Bag 907",
+        "Upper Hutt 5140"
+      ],
+      "website": "https://www.upperhutt.govt.nz/contact-us/get-in-touch"
+    },
+    {
+      "name": "Lower Hutt City Council",
+      "territory": "Lower Hutt",
+      "authority": "City Council",
+      "physicalAddress": "30 Laings Road, Lower Hutt",
+      "postalAddress": [
+        "Private Bag 31-912",
+        "Lower Hutt 5040"
+      ],
+      "website": "https://www.huttcity.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Wellington City Council",
+      "territory": "Wellington",
+      "authority": "City Council",
+      "physicalAddress": "2 Harris Street, Wellington Central",
+      "postalAddress": [
+        "PO Box 2199",
+        "Wellington 6140"
+      ],
+      "website": "https://wellington.govt.nz/contact-us/contact-details"
+    },
+    {
+      "name": "Masterton District Council",
+      "territory": "Masterton",
+      "authority": "District Council",
+      "physicalAddress": "161 Queen Street, Masterton",
+      "postalAddress": [
+        "PO Box 444",
+        "Masterton 5840"
+      ],
+      "website": "https://www.mstn.govt.nz/contact-us"
+    },
+    {
+      "name": "Carterton District Council",
+      "territory": "Carterton",
+      "authority": "District Council",
+      "physicalAddress": "28 Holloway Street, Carterton",
+      "postalAddress": [
+        "PO Box 9",
+        "Carterton 5743"
+      ],
+      "website": "https://cdc.govt.nz/contacts/"
+    },
+    {
+      "name": "South Wairarapa District Council",
+      "territory": "South Wairarapa",
+      "authority": "District Council",
+      "physicalAddress": "19 Kitchener Street, Martinborough",
+      "postalAddress": [
+        "PO Box 6",
+        "Martinborough 5741"
+      ],
+      "website": "https://swdc.govt.nz/contact-us/"
+    },
+    {
+      "name": "Tasman District Council",
+      "territory": "Tasman",
+      "authority": "District Council",
+      "physicalAddress": "189 Queen Street, Richmond 7050",
+      "postalAddress": [
+        "Private Bag 4",
+        "Richmond 7050"
+      ],
+      "website": "https://www.tasman.govt.nz/my-council/service-centres/richmond"
+    },
+    {
+      "name": "Nelson City Council",
+      "territory": "Nelson",
+      "authority": "City Council",
+      "physicalAddress": "Civic House, 110 Trafalgar Street, Nelson",
+      "postalAddress": [
+        "PO Box 645",
+        "Nelson 7040"
+      ],
+      "website": "https://www.nelson.govt.nz/1your-council/feedback/contact-us"
+    },
+    {
+      "name": "Marlborough District Council",
+      "territory": "Marlborough",
+      "authority": "District Council",
+      "physicalAddress": "15 Seymour Street, Seymour Square, Blenheim 7201",
+      "postalAddress": [
+        "PO Box 443",
+        "Blenheim 7240"
+      ],
+      "website": "https://www.marlborough.govt.nz/contact-us"
+    },
+    {
+      "name": "Buller District Council",
+      "territory": "Buller",
+      "authority": "District Council",
+      "physicalAddress": "6-8 Brougham Street, Westport",
+      "postalAddress": [
+        "PO Box 21",
+        "Westport 7866"
+      ],
+      "website": "https://bullerdc.govt.nz/contact/"
+    },
+    {
+      "name": "Grey District Council",
+      "territory": "Grey",
+      "authority": "District Council",
+      "physicalAddress": "105 Tainui Street, Greymouth 7805",
+      "postalAddress": [
+        "PO Box 382",
+        "Greymouth 7840"
+      ],
+      "website": "https://www.greydc.govt.nz/04your-council/council-contacts"
+    },
+    {
+      "name": "Westland District Council",
+      "territory": "Westland",
+      "authority": "District Council",
+      "physicalAddress": "36 Weld Street, Hokitika 7810",
+      "postalAddress": [
+        "Private Bag 704",
+        "Hokitika 7842"
+      ],
+      "website": "https://www.westlanddc.govt.nz/contact-us/"
+    },
+    {
+      "name": "Kaikōura District Council",
+      "territory": "Kaikōura",
+      "authority": "District Council",
+      "physicalAddress": "Level 2, 96 West End, Kaikōura",
+      "postalAddress": [
+        "PO Box 6",
+        "Kaikōura 7340"
+      ],
+      "website": "https://www.kaikoura.govt.nz/contact-us/"
+    },
+    {
+      "name": "Hurunui District Council",
+      "territory": "Hurunui",
+      "authority": "District Council",
+      "physicalAddress": "66 Carters Road (SH1), Amberley 7410",
+      "postalAddress": [
+        "PO Box 13",
+        "Amberley 7441"
+      ],
+      "website": "https://www.hurunui.govt.nz/council/contact"
+    },
+    {
+      "name": "Waimakariri District Council",
+      "territory": "Waimakariri",
+      "authority": "District Council",
+      "physicalAddress": "215 High Street, Rangiora",
+      "postalAddress": [
+        "Private Bag 1005",
+        "Rangiora 7440"
+      ],
+      "website": "https://www.waimakariri.govt.nz/council/contact-us"
+    },
+    {
+      "name": "Christchurch City Council",
+      "territory": "Christchurch",
+      "authority": "City Council",
+      "physicalAddress": "53 Hereford Street, Christchurch 8013",
+      "postalAddress": [
+        "PO Box 73016",
+        "Christchurch 8154"
+      ],
+      "website": "https://www.govt.nz/organisations/christchurch-city-council/"
+    },
+    {
+      "name": "Selwyn District Council",
+      "territory": "Selwyn",
+      "authority": "District Council",
+      "physicalAddress": "2 Norman Kirk Drive, Rolleston",
+      "postalAddress": [
+        "PO Box 90",
+        "Rolleston 7643"
+      ],
+      "website": "https://www.selwyn.govt.nz/your-council/contact-us"
+    },
+    {
+      "name": "Ashburton District Council",
+      "territory": "Ashburton",
+      "authority": "District Council",
+      "physicalAddress": "5 Baring Square West, Ashburton 7700",
+      "postalAddress": [
+        "PO Box 94",
+        "Ashburton 7740"
+      ],
+      "website": "https://www.govt.nz/organisations/ashburton-district-council/"
+    },
+    {
+      "name": "Timaru District Council",
+      "territory": "Timaru",
+      "authority": "District Council",
+      "physicalAddress": "2 King George Place, Timaru Central, Timaru 7910",
+      "postalAddress": [
+        "PO Box 522",
+        "Timaru 7940"
+      ],
+      "website": "https://www.timaru.govt.nz/tell-us/contact-us/timaru-main-office"
+    },
+    {
+      "name": "Mackenzie District Council",
+      "territory": "Mackenzie",
+      "authority": "District Council",
+      "physicalAddress": "53 Main Street, Fairlie 7925",
+      "postalAddress": [
+        "PO Box 52",
+        "Fairlie 7949"
+      ],
+      "website": "https://www.mackenzie.govt.nz/pages/contact"
+    },
+    {
+      "name": "Waimate District Council",
+      "territory": "Waimate",
+      "authority": "District Council",
+      "physicalAddress": "Local Government Centre, 125 Queen Street, Waimate 7924",
+      "postalAddress": [
+        "PO Box 122",
+        "Waimate 7960"
+      ],
+      "website": "https://www.govt.nz/organisations/waimate-district-council/"
+    },
+    {
+      "name": "Waitaki District Council",
+      "territory": "Waitaki",
+      "authority": "District Council",
+      "physicalAddress": "20 Thames Street, Ōamaru 9400",
+      "postalAddress": [
+        "Private Bag 50058",
+        "Ōamaru 9444"
+      ],
+      "website": "https://www.waitaki.govt.nz/Council/Contact-us"
+    },
+    {
+      "name": "Central Otago District Council",
+      "territory": "Central Otago",
+      "authority": "District Council",
+      "physicalAddress": "William Fraser Building, 1 Dunorling Street, Alexandra",
+      "postalAddress": [
+        "PO Box 122",
+        "Alexandra 9340"
+      ],
+      "website": "https://www.codc.govt.nz/contact-us"
+    },
+    {
+      "name": "Queenstown-Lakes District Council",
+      "territory": "Queenstown-Lakes",
+      "authority": "District Council",
+      "physicalAddress": "10 Gorge Road, Queenstown",
+      "postalAddress": [
+        "Private Bag 50072",
+        "Queenstown 9348"
+      ],
+      "website": "https://www.qldc.govt.nz/do-it-online/contact-us-fix-it/"
+    },
+    {
+      "name": "Dunedin City Council",
+      "territory": "Dunedin",
+      "authority": "City Council",
+      "physicalAddress": "Civic Centre, 50 The Octagon, Dunedin",
+      "postalAddress": [
+        "PO Box 5045",
+        "Dunedin 9054"
+      ],
+      "website": "https://www.govt.nz/organisations/dunedin-city-council/"
+    },
+    {
+      "name": "Clutha District Council",
+      "territory": "Clutha",
+      "authority": "District Council",
+      "physicalAddress": "1 Rosebank Terrace, Balclutha",
+      "postalAddress": [
+        "PO Box 25",
+        "Balclutha 9240"
+      ],
+      "website": "https://www.govt.nz/organisations/clutha-district-council/"
+    },
+    {
+      "name": "Southland District Council",
+      "territory": "Southland",
+      "authority": "District Council",
+      "physicalAddress": "15 Forth Street, Invercargill 9810",
+      "postalAddress": [
+        "PO Box 903",
+        "Invercargill 9840"
+      ],
+      "website": "https://www.govt.nz/organisations/southland-district-council/"
+    },
+    {
+      "name": "Gore District Council",
+      "territory": "Gore",
+      "authority": "District Council",
+      "physicalAddress": "29 Civic Avenue, Gore 9710",
+      "postalAddress": [
+        "PO Box 8",
+        "Gore 9740"
+      ],
+      "website": "https://www.govt.nz/organisations/gore-district-council/"
+    },
+    {
+      "name": "Invercargill City Council",
+      "territory": "Invercargill",
+      "authority": "City Council",
+      "physicalAddress": "101 Esk Street, Invercargill 9810",
+      "postalAddress": [
+        "Private Bag 90104",
+        "Invercargill 9840"
+      ],
+      "website": "https://www.govt.nz/organisations/invercargill-city-council/"
+    },
+    {
+      "name": "Chatham Islands Council",
+      "territory": "Chatham Islands",
+      "authority": "Council",
+      "physicalAddress": "13 Waitangi Tuku Road, Waitangi, Chatham Islands",
+      "postalAddress": [
+        "PO Box 24",
+        "Waitangi",
+        "Chatham Islands 8942"
+      ],
+      "website": "https://www.cic.govt.nz/contact"
+    }
+  ]
+}

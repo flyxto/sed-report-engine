@@ -1,0 +1,204 @@
+{
+  "elementTypes": [
+    {
+      "code": "PF1",
+      "name": "Rectangular Portal Frame",
+      "category": "Portal Frames",
+      "materials": [
+        "Mild steel"
+      ],
+      "standards": [
+        "NZS 3404",
+        "NZS 3101",
+        "NZS 3604",
+        "Engineering NZ Guide on Residential Portal Frame Design"
+      ],
+      "inspections": [
+        {
+          "item": "Shop Drawing Check",
+          "timeframe": "Prior to fabrication",
+          "monitoredBy": "Structural Engineer",
+          "onSite": false
+        },
+        {
+          "item": "Member Sizes during construction while visible",
+          "timeframe": "During construction, while members are visible",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Knee connection during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Base plate connection during connection while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        }
+      ],
+      "scrNarrative": "The portal frame has been designed to resist both wind and lateral bracing demands as entered by the architect. Dead loads are as per the assemblies defined by the architect. Tributary widths are also as per the architect's inputs.",
+      "rbwRow": "Portal",
+      "rbwDescription": "SED Portal frame as per beam layout plan, bracing plan and drawings"
+    },
+    {
+      "code": "PF2",
+      "name": "Gable Shaped Portal Frame",
+      "category": "Portal Frames",
+      "materials": [
+        "Mild steel"
+      ],
+      "standards": [
+        "NZS 3404",
+        "NZS 3101",
+        "NZS 3604",
+        "Engineering NZ Guide on Residential Portal Frame Design"
+      ],
+      "inspections": [
+        {
+          "item": "Shop Drawing Check",
+          "timeframe": "Prior to fabrication",
+          "monitoredBy": "Structural Engineer",
+          "onSite": false
+        },
+        {
+          "item": "Member Sizes during construction while visible",
+          "timeframe": "During construction, while members are visible",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Knee connection during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Base plate connection during connection while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Apex connection during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        }
+      ],
+      "scrNarrative": "The portal frame has been designed to resist both wind and lateral bracing demands as entered by the architect. Dead loads are as per the assemblies defined by the architect. Tributary widths are also as per the architect's inputs.",
+      "rbwRow": "Portal",
+      "rbwDescription": "SED Portal frame as per beam layout plan, bracing plan and drawings"
+    },
+    {
+      "code": "SB1",
+      "name": "Steel Beam Type 1",
+      "category": "Beams",
+      "materials": [
+        "Mild steel"
+      ],
+      "standards": [
+        "NZS 3404",
+        "NZS 3101",
+        "NZS 3604"
+      ],
+      "inspections": [
+        {
+          "item": "Shop Drawing Check",
+          "timeframe": "Prior to fabrication",
+          "monitoredBy": "Structural Engineer",
+          "onSite": false
+        },
+        {
+          "item": "Member Sizes during construction while visible",
+          "timeframe": "During construction, while members are visible",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Top end connection during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Bottom end connections during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        }
+      ],
+      "scrNarrative": "The steel beam has been designed to resist dead, live and wind loads as entered by the architect. Dead loads are as per the assemblies defined by the architect. Tributary widths are also as per the architect's inputs.",
+      "rbwRow": "Beams",
+      "rbwDescription": "SED beams and posts as per beam layout plan"
+    },
+    {
+      "code": "TB1",
+      "name": "Timber Beam Type 1",
+      "category": "Beams",
+      "materials": [
+        "Structural timber",
+        "Steel timber fixings"
+      ],
+      "standards": [
+        "NZS/AS 1720.1",
+        "NZS 3101",
+        "NZS 3604"
+      ],
+      "inspections": [
+        {
+          "item": "Member Sizes during construction while visible",
+          "timeframe": "During construction, while members are visible",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Top end connection during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        },
+        {
+          "item": "Bottom end connections during construction while visible",
+          "timeframe": "While all connections are clearly visible, pre-line and prior to building in to such an extent that remediation work could not be carried out.",
+          "monitoredBy": "Structural Engineer"
+        }
+      ],
+      "scrNarrative": "The timber beam has been designed to resist dead, live and wind loads as entered by the architect. Dead loads are as per the assemblies defined by the architect. Tributary widths are also as per the architect's inputs.",
+      "rbwRow": "Beams",
+      "rbwDescription": "SED beams and posts as per beam layout plan"
+    },
+    {
+      "code": "Rafts",
+      "name": "Raft Foundations",
+      "category": "Foundations",
+      "materials": [
+        "Reinforced concrete"
+      ],
+      "standards": [
+        "NZS 3101",
+        "NZS 3604",
+        "MBIE Guidelines on Raft Foundations Design"
+      ],
+      "inspections": [
+        {
+          "item": "Subgrade inspection by the project Geotechnical Engineer",
+          "timeframe": "Prior to placing hardfill, sand or concrete blinding layer",
+          "monitoredBy": "Geotechnical Engineer"
+        },
+        {
+          "item": "Reinforcement pre pour inspection by project Structural Engineer",
+          "timeframe": "Pre-pour",
+          "monitoredBy": "Structural Engineer",
+          "observations": [
+            "The ground beam dimensions and the slab thickness are in accordance with the approved drawings.",
+            "The ground beam longitudinal and transverse reinforcement are in accordance with the approved drawings.",
+            "Polythene underlay is installed beneath the reinforcement.",
+            "Cover to the reinforcement is provided in accordance with the drawings.",
+            "The floor slab reinforcing mesh is in accordance with the approved drawings.",
+            "Hold-down anchor bolts are installed in the locations shown on the drawings.",
+            "Formwork for the foundation slab is in good condition."
+          ]
+        },
+        {
+          "item": "Any floor thickening requirements for posts or portal frames",
+          "timeframe": "Pre-pour",
+          "monitoredBy": "Structural Engineer"
+        }
+      ],
+      "scrNarrative": "The raft slab was designed as per the MBIE guidance on raft slab design and the applicable NZ standards.",
+      "rbwRow": "Foundations",
+      "rbwDescription": "SED Foundations as per foundation plan"
+    }
+  ]
+}

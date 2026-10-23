@@ -1,0 +1,159 @@
+{
+  "$defs": {
+    "ElementType": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "category": {
+          "minLength": 1,
+          "title": "Category",
+          "type": "string"
+        },
+        "materials": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Materials",
+          "type": "array"
+        },
+        "standards": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Standards",
+          "type": "array"
+        },
+        "inspections": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Inspection"
+          },
+          "title": "Inspections",
+          "type": "array"
+        },
+        "scrNarrative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scrnarrative"
+        },
+        "rbwRow": {
+          "anyOf": [
+            {
+              "enum": [
+                "Foundations",
+                "Subfloor framing",
+                "Retaining walls",
+                "Beams",
+                "Portal",
+                "Bracing",
+                "Other (primary)"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rbwrow"
+        },
+        "rbwDescription": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rbwdescription"
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "category",
+        "materials"
+      ],
+      "title": "ElementType",
+      "type": "object"
+    },
+    "Inspection": {
+      "additionalProperties": false,
+      "description": "An inspection on the project's checklist: a row of the PS1's Construction\nMonitoring Schedule, and what a SIR inspects. Defined per element type in the\nlibrary, or added on the project (reports.sir.additionalInspections).",
+      "properties": {
+        "item": {
+          "minLength": 1,
+          "title": "Item",
+          "type": "string"
+        },
+        "timeframe": {
+          "default": "",
+          "title": "Timeframe",
+          "type": "string"
+        },
+        "monitoredBy": {
+          "default": "Structural Engineer",
+          "minLength": 1,
+          "title": "Monitoredby",
+          "type": "string"
+        },
+        "onSite": {
+          "default": true,
+          "title": "Onsite",
+          "type": "boolean"
+        },
+        "observations": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Observations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "item"
+      ],
+      "title": "Inspection",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "elementTypes": {
+      "items": {
+        "$ref": "#/$defs/ElementType"
+      },
+      "title": "Elementtypes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "elementTypes"
+  ],
+  "title": "ElementLibrary",
+  "type": "object"
+}

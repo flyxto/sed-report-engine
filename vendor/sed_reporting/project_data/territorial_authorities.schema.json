@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "TerritorialAuthority": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "territory": {
+          "minLength": 1,
+          "title": "Territory",
+          "type": "string"
+        },
+        "authority": {
+          "enum": [
+            "City Council",
+            "District Council",
+            "Council"
+          ],
+          "title": "Authority",
+          "type": "string"
+        },
+        "physicalAddress": {
+          "minLength": 1,
+          "title": "Physicaladdress",
+          "type": "string"
+        },
+        "postalAddress": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Postaladdress",
+          "type": "array"
+        },
+        "website": {
+          "default": "",
+          "title": "Website",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "territory",
+        "authority",
+        "physicalAddress",
+        "postalAddress"
+      ],
+      "title": "TerritorialAuthority",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "territorialAuthorities": {
+      "items": {
+        "$ref": "#/$defs/TerritorialAuthority"
+      },
+      "title": "Territorialauthorities",
+      "type": "array"
+    }
+  },
+  "required": [
+    "territorialAuthorities"
+  ],
+  "title": "TerritorialAuthorities",
+  "type": "object"
+}

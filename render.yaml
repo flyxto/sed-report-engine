@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: sed-report-engine
+    runtime: docker
+    dockerfilePath: ./Dockerfile.render
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: REPORT_ENGINE_SECRET
+        sync: false

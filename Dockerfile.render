@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+
+WORKDIR /srv
+
+COPY requirements-prod.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY vendor/reporting /srv/reporting
+COPY vendor/sed_reporting /srv/sed_reporting
+COPY __init__.py app.py draft.py errors.py generate.py mapper.py start.sh /srv/sed_report_engine/
+
+ENV PYTHONPATH=/srv
+EXPOSE 8010
+
+CMD ["sh", "/srv/sed_report_engine/start.sh"]

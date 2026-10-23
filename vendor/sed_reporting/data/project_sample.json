@@ -1,0 +1,486 @@
+{
+  "id": "3",
+  "projectId": "P260703",
+  "project_id": "P260703",
+  "name": "Smith Residence Extension",
+  "projectName": "Smith Residence Extension",
+  "projectDescription": "Two-storey residential extension with timber framing",
+  "address": "45 Hillcrest Avenue, Wellington 6012",
+  "siteAddress": "45 Hillcrest Avenue, Wellington 6012",
+  "siteStreetAddress": "45 Hillcrest Avenue",
+  "siteSuburb": "",
+  "siteTownCity": "Wellington",
+  "sitePostcode": "6012",
+  "legalDescription": "Lot 4 DP 123456",
+  "territorialAuthority": "Wellington City Council",
+  "status": "Element Design",
+  "createdAt": "2026-07-03T02:14:31.000Z",
+  "client_agreement_signed": false,
+  "builderOwnerName": "Smith Building Co.",
+  "builderId": "7",
+  "builder": {
+    "id": "7",
+    "name": "Smith Building Co."
+  },
+  "client": {
+    "id": "12",
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "phone": "+64 21 555 0123",
+    "phoneNumber": "+64 21 555 0123",
+    "companyName": null,
+    "address": "45 Hillcrest Avenue, Wellington 6012"
+  },
+  "clientName": "John Smith",
+  "clientEmail": "john.smith@example.com",
+  "clientPhone": "+64 21 555 0123",
+  "clientAvatarUrl": null,
+  "pmName": "Sarah Johnson",
+  "pmRole": "Project Manager",
+  "pmAvatarUrl": "https://pub-xxx.r2.dev/avatars/sarah.jpg",
+  "internalReviewingEngineer": {
+    "name": "James O'Brien",
+    "handle": "james.obrien@sed.works",
+    "avatarUrl": "https://pub-xxx.r2.dev/avatars/james.jpg",
+    "position": "Senior Structural Engineer",
+    "charteredStatus": "Chartered Professional Engineer",
+    "cpengNumber": "1234567",
+    "qualifications": [
+      "BE (Hons)"
+    ],
+    "mobile": "+64 21 000 2222",
+    "signatureUrl": "https://pub-xxx.r2.dev/signatures/james.png"
+  },
+  "inspectionEngineer": {
+    "name": "Sam Rivers",
+    "handle": "sam.rivers@example.nz",
+    "position": "Inspection Engineer",
+    "mobile": "+64 21 000 3333",
+    "signatureUrl": "https://pub-xxx.r2.dev/signatures/sam.png"
+  },
+  "buildingConsentNumber": "BC-2026-00451",
+  "buildingConsentAmendments": [],
+  "approvedConsentFileUrl": "https://pub-xxx.r2.dev/projects/3/consent.pdf",
+  "recordOfWorksFileUrl": "https://pub-xxx.r2.dev/projects/3/consent.pdf",
+  "form5FileUrl": "https://pub-xxx.r2.dev/projects/3/form5.pdf",
+  "ps3CertificateFileUrl": "https://pub-xxx.r2.dev/projects/3/form5.pdf",
+  "ps1CertificateData": {
+    "issuer": "Earthquake & Structural Engineering Consultants Limited",
+    "issuerShortName": "EQSE",
+    "issuerPhone": "+64 9 000 1111",
+    "issuerEmail": "certs@sed.works",
+    "issuerAddress": "Level 5, 1 Queen Street, Auckland",
+    "issuedAt": "2026-09-01T00:00:00.000Z",
+    "signedByName": "James O'Brien",
+    "signedByTitle": "Chartered Structural Engineer",
+    "licenceNumber": "CPEng 12345",
+    "issuerPostalAddress": "Level 5, 1 Queen Street, Auckland",
+    "issuerPhoneAfterHours": "+64 9 000 1111",
+    "issuerWebsite": "www.example-engineers.nz",
+    "issuerPiInsuranceNzd": 200000,
+    "issuerAceNzMember": false,
+    "issuerLogoUrl": "https://pub-xxx.r2.dev/logos/firm.png"
+  },
+  "ps1CertificateUrl": "https://pub-xxx.r2.dev/projects/3/ps1.pdf",
+  "designFeaturesReportUrl": "https://pub-xxx.r2.dev/projects/3/reports/design_features.pdf",
+  "structuralCalculationReportUrl": "https://pub-xxx.r2.dev/projects/3/reports/structural_calc.pdf",
+  "structural": {
+    "ulsBearing": "150.00",
+    "windZone": "Extra High",
+    "snowZone": "Low",
+    "snowElevation": null
+  },
+  "assemblies": [
+    {
+      "id": "8",
+      "category": "WALL",
+      "code": "W2-90-R2.0",
+      "name": "90mm Timber Stud Wall - R2.0",
+      "frameSpacing": 600,
+      "rValue": "2.0",
+      "roofSlope": null,
+      "overhang": null,
+      "calculatedTotalWeight": 0.52,
+      "materials": [
+        {
+          "id": "mat-001",
+          "code": "PLAST-001",
+          "name": "Gib Standard 10mm",
+          "unit": "kPa",
+          "baseWeight": 0.08,
+          "quantity": 1,
+          "weight": 0.08,
+          "spacing": null
+        },
+        {
+          "id": "mat-002",
+          "code": "INS-001",
+          "name": "Pink Batts R2.0 90mm",
+          "unit": "kPa",
+          "baseWeight": 0.005,
+          "quantity": 1,
+          "weight": 0.005,
+          "spacing": null
+        },
+        {
+          "id": "mat-003",
+          "code": "STUD-90",
+          "name": "90x45 Radiata Pine Stud",
+          "unit": "kN/m",
+          "baseWeight": 0.019,
+          "quantity": 1,
+          "weight": null,
+          "spacing": "600"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "category": "ROOF",
+      "code": "R1-Metal-H40",
+      "name": "Metal Roof - H40 Wind Zone",
+      "frameSpacing": 900,
+      "rValue": null,
+      "roofSlope": "15.00",
+      "overhang": "0.6000",
+      "calculatedTotalWeight": 0.48,
+      "materials": [
+        {
+          "id": "mat-010",
+          "code": "ROOF-STEEL-001",
+          "name": "Colorsteel Endura 0.55mm",
+          "unit": "kPa",
+          "baseWeight": 0.04,
+          "quantity": 1,
+          "weight": 0.04,
+          "spacing": null
+        },
+        {
+          "id": "mat-011",
+          "code": "PURL-70",
+          "name": "70x45 Radiata Pine Purlin",
+          "unit": "kN/m",
+          "baseWeight": 0.014,
+          "quantity": 1,
+          "weight": null,
+          "spacing": "900"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "category": "FLOOR",
+      "code": "F1-Timber-200",
+      "name": "Timber Floor - 200mm Joist",
+      "frameSpacing": 400,
+      "rValue": "1.3",
+      "roofSlope": null,
+      "overhang": null,
+      "calculatedTotalWeight": 0.72,
+      "materials": [
+        {
+          "id": "mat-020",
+          "code": "FLOOR-PLY-001",
+          "name": "Plywood Flooring 19mm",
+          "unit": "kPa",
+          "baseWeight": 0.11,
+          "quantity": 1,
+          "weight": 0.11,
+          "spacing": null
+        },
+        {
+          "id": "mat-021",
+          "code": "JOIST-200",
+          "name": "200x45 LVL Joist",
+          "unit": "kN/m",
+          "baseWeight": 0.039,
+          "quantity": 1,
+          "weight": null,
+          "spacing": "400"
+        }
+      ]
+    }
+  ],
+  "drawings": [
+    {
+      "id": "drw-001",
+      "elementId": 5,
+      "fileName": "P260703-B01-Beam-Design.pdf",
+      "version": "Version-2",
+      "status": "Approved",
+      "fileUrl": "https://pub-xxx.r2.dev/projects/3/drawings/B01-v2.pdf",
+      "uploadedBy": {
+        "name": "Sarah Johnson",
+        "username": "sarah.johnson",
+        "avatarUrl": "https://pub-xxx.r2.dev/avatars/sarah.jpg"
+      },
+      "reviewedBy": {
+        "name": "James O'Brien",
+        "role": "SED Engineer",
+        "avatarUrl": "https://pub-xxx.r2.dev/avatars/james.jpg"
+      }
+    },
+    {
+      "id": "drw-002",
+      "elementId": 6,
+      "fileName": "P260703-C01-Column-Design.pdf",
+      "version": "Version-1",
+      "status": "Under Review",
+      "fileUrl": "https://pub-xxx.r2.dev/projects/3/drawings/C01-v1.pdf",
+      "uploadedBy": {
+        "name": "Sarah Johnson",
+        "username": "sarah.johnson",
+        "avatarUrl": "https://pub-xxx.r2.dev/avatars/sarah.jpg"
+      },
+      "reviewedBy": {
+        "name": "Pending Review",
+        "role": "Reviewer",
+        "avatarUrl": null
+      }
+    }
+  ],
+  "architect": {
+    "companyName": "Example Architects Ltd",
+    "name": "Alex Example"
+  },
+  "drawingReviews": [
+    {
+      "completedAt": "2026-08-15T02:30:00Z"
+    }
+  ],
+  "geotechnicalReport": {
+    "authorCompany": "Example Geotech Ltd",
+    "reference": "G-0451",
+    "revision": "A",
+    "issueDate": "2026-07-20",
+    "fileUrl": "https://pub-xxx.r2.dev/projects/3/reports/geotechnical.pdf"
+  },
+  "elements": [
+    {
+      "id": 4,
+      "type": "PF1",
+      "description": "Portal Frame for Living Room",
+      "calculationReportUrl": "https://pub-xxx.r2.dev/projects/3/elements/4/calculation-report.pdf"
+    },
+    {
+      "id": 5,
+      "type": "TB1",
+      "description": "Beam B01",
+      "calculationReportUrl": "https://pub-xxx.r2.dev/projects/3/elements/5/calculation-report.pdf"
+    },
+    {
+      "id": 7,
+      "type": "Rafts",
+      "description": "Raft foundation for the extension",
+      "calculationReportUrl": "https://pub-xxx.r2.dev/projects/3/elements/7/calculation-report.pdf"
+    }
+  ],
+  "durability": {
+    "steelFixings": {
+      "exposureZone": "Zone B and C"
+    },
+    "concrete": {
+      "exposureClassification": "B1"
+    },
+    "steel": {
+      "macroclimateCategory": "C4",
+      "constructionCategory": "CC2"
+    }
+  },
+  "reports": {
+    "ps1": {
+      "codeClauses": [
+        "B1"
+      ],
+      "extent": "part",
+      "engagedBy": null,
+      "designAssumptions": [],
+      "constructionMonitoringLevel": "CM3",
+      "waivers": {
+        "required": false,
+        "details": null
+      },
+      "liabilityCapNzd": 200000,
+      "documents": {
+        "certificateOfDesignWork": true,
+        "constructionMonitoringSchedule": true,
+        "b2LetterInLieu": true
+      },
+      "revisions": [
+        {
+          "description": "Building Consent"
+        }
+      ]
+    },
+    "scr": {
+      "importanceLevel": "IL2",
+      "revisions": [
+        {
+          "description": "Building Consent",
+          "issuedOn": "2026-09-01",
+          "citesDrawings": "P260703-DRG-Rev A"
+        },
+        {
+          "description": "Response to council RFI"
+        }
+      ],
+      "scopeExtra": [],
+      "alternativeSolutions": [],
+      "narratives": {
+        "4": "The portal frame has been designed to resist both wind and lateral bracing demands as entered by the architect. Dead loads are as per the assemblies defined by the architect. Tributary widths are also as per the architect's inputs.\n\nSteel portal frame supporting the living room roof and providing lateral bracing."
+      },
+      "foundations": {
+        "groundConditions": "TC2",
+        "expansiveSoilsSuspected": true,
+        "siteSoilsClass": "M",
+        "narrative": ""
+      }
+    },
+    "sir": {
+      "additionalInspections": [],
+      "visits": [
+        {
+          "number": 1,
+          "inspectionDate": "2026-10-09",
+          "siteContact": {
+            "name": "Pat Builder",
+            "phone": "+64 21 555 0199",
+            "email": "pat@example-builders.nz"
+          },
+          "items": [
+            {
+              "inspection": "Reinforcement pre pour inspection by project Structural Engineer",
+              "elements": [
+                7
+              ],
+              "element": "Foundation slab and ground beam at GL A-C/1-3",
+              "drawingSheets": "sheets S-01, S-03",
+              "observations": [
+                {
+                  "id": "6f1c2a90-1",
+                  "text": "The ground beam dimensions and the slab thickness are in accordance with the approved drawings.",
+                  "photos": [
+                    "https://pub-xxx.r2.dev/projects/3/photos/sir01-1a.jpg",
+                    "https://pub-xxx.r2.dev/projects/3/photos/sir01-1b.jpg"
+                  ],
+                  "result": "Pass"
+                },
+                {
+                  "id": "6f1c2a90-2",
+                  "text": "The ground beam longitudinal and transverse reinforcement are in accordance with the approved drawings.",
+                  "photos": [
+                    "https://pub-xxx.r2.dev/projects/3/photos/sir01-2a.jpg"
+                  ],
+                  "result": "Pass"
+                },
+                {
+                  "id": "6f1c2a90-3",
+                  "text": "Polythene underlay is installed beneath the reinforcement.",
+                  "photos": [],
+                  "result": "Pass"
+                },
+                {
+                  "id": "6f1c2a90-4",
+                  "text": "Cover to the reinforcement is provided in accordance with the drawings.",
+                  "photos": [
+                    "https://pub-xxx.r2.dev/projects/3/photos/sir01-4a.jpg"
+                  ],
+                  "result": "Fail",
+                  "requiredCorrection": "Cover to the east ground beam reinforcement is less than 50 mm: support the bars on bar chairs to give the specified cover, and upload photos.",
+                  "notices": [
+                    {
+                      "sentAt": "2026-10-09T11:05:00+13:00",
+                      "sentTo": "pat@example-builders.nz"
+                    }
+                  ],
+                  "corrections": [
+                    {
+                      "notes": "Bar chairs added along the east ground beam to give 50 mm cover.",
+                      "photos": [
+                        "https://pub-xxx.r2.dev/projects/3/photos/sir01-4c.jpg"
+                      ],
+                      "submittedAt": "2026-10-09T15:20:00+13:00",
+                      "submittedBy": "Pat Builder",
+                      "review": {
+                        "decision": "Approved",
+                        "reviewedAt": "2026-10-09T16:02:00+13:00",
+                        "reviewedBy": "Sam Rivers"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "6f1c2a90-5",
+                  "text": "The floor slab reinforcing mesh is in accordance with the approved drawings.",
+                  "photos": [],
+                  "result": "Pass"
+                },
+                {
+                  "id": "6f1c2a90-6",
+                  "text": "Formwork for the foundation slab is in good condition.",
+                  "photos": [],
+                  "result": "Pass"
+                }
+              ]
+            }
+          ],
+          "actions": [
+            "Once the building inspector from {council} has been to site, you may proceed with the work."
+          ]
+        }
+      ],
+      "officeChecks": [
+        {
+          "inspection": "Shop Drawing Check",
+          "completedOn": "2026-10-06",
+          "notes": "Portal frame shop drawings, revision B"
+        }
+      ]
+    },
+    "rfi": {
+      "rounds": [
+        {
+          "number": 1,
+          "receivedAt": "2026-09-23T01:15:00Z",
+          "items": [
+            {
+              "id": "4b7e9c10-1",
+              "heading": "B1: Portal frame connections",
+              "question": "The portal frame knee and base connections are not detailed on the drawings.\nPlease provide the connection details, and confirm the bolt grade assumed in the calculations.",
+              "answer": "The knee and base connections are now detailed on sheets S201 and S202, added to the drawing set. The bolt grade assumed in the calculations is noted on S201.",
+              "drawings": "revised",
+              "drawingSheets": "S201, S202"
+            },
+            {
+              "id": "4b7e9c10-2",
+              "heading": "B1: Raft foundation",
+              "question": "Please provide calculations for the raft foundation's thickened edge under the portal frame base.",
+              "answer": "The thickened edge has been checked for the portal frame base reactions. The check is added to the calculations; its output is shown below.",
+              "images": [
+                "https://pub-xxx.r2.dev/projects/3/rfi/rfi01-2-a.png"
+              ],
+              "calculations": "revised"
+            },
+            {
+              "id": "4b7e9c10-3",
+              "heading": "B2: Durability",
+              "question": "Please provide details of the durability of the structural steel brackets and fixings, demonstrating compliance with NZ Building Code clause B2 Durability.",
+              "answer": "The durability of the structural steel and of the steel timber fixings is set out in the B2 letter in the PS1 package.",
+              "ps1": "cited"
+            }
+          ]
+        }
+      ]
+    },
+    "ps4": {
+      "ps3s": [],
+      "recordOfWork": null,
+      "recordOfWorkRequired": true,
+      "revisions": [
+        {
+          "description": "Code Compliance Certificate"
+        }
+      ]
+    }
+  }
+}

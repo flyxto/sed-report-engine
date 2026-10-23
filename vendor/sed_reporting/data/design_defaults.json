@@ -1,0 +1,14 @@
+{
+  "liveLoads": {
+    "residential": [
+      {"area": "Floors", "distributedKpa": 1.5, "pointKn": 1.8},
+      {"area": "Decks and balconies", "distributedKpa": 2.0, "pointKn": 1.8},
+      {"area": "Roofs", "distributedKpa": 0.25, "pointKnRange": [1.1, 1.4]}
+    ],
+    "barriers": {"lineKnPerM": 0.35, "concentratedKn": 0.6, "infillKpa": 0.5}
+  },
+  "ps1": {
+    "verificationMethods": "B1/VM1 and VM2",
+    "carriedOutOrSupervised": "Supervised"
+  }
+}

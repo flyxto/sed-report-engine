@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "description": "Items per interval, as the element library gives them for a material.",
+  "properties": {
+    "halfYearly": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Halfyearly",
+      "type": "array"
+    },
+    "fiveYearly": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Fiveyearly",
+      "type": "array"
+    },
+    "tenYearly": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Tenyearly",
+      "type": "array"
+    },
+    "twentyFiveYearly": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Twentyfiveyearly",
+      "type": "array"
+    },
+    "afterFitOutOrAlterations": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Afterfitoutoralterations",
+      "type": "array"
+    },
+    "afterSeismicShakingSls1": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Afterseismicshakingsls1",
+      "type": "array"
+    }
+  },
+  "title": "MaintenanceItems",
+  "type": "object"
+}

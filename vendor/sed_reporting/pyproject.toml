@@ -1,0 +1,38 @@
+[project]
+name = "sed_reporting"
+version = "0.1.0"
+description = "Assembles element report PDFs (rendered by `reporting`) into one combined report: library + HTTP service"
+requires-python = ">=3.12"
+# `reporting` is deliberately absent: like the design modules, this repo finds it
+# through its parent directory on PYTHONPATH (/opt in the Docker base image,
+# ~/dev locally). requirements.txt carries reporting's own runtime dependency.
+dependencies = [
+    "pypdf>=4.0",
+    "reportlab>=4.0",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+    "pydantic>=2",
+    "pillow>=10",
+    "cryptography>=3.1",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# The repo root IS the `sed_reporting` package (same layout as `reporting`).
+[tool.setuptools]
+packages = ["sed_reporting", "sed_reporting.project_data", "sed_reporting.scr", "sed_reporting.ps1", "sed_reporting.sir", "sed_reporting.rfi", "sed_reporting.ps4"]
+package-dir = {"sed_reporting" = "."}
+
+[tool.setuptools.package-data]
+sed_reporting = ["data/element_library.json", "data/design_defaults.json", "data/territorial_authorities.json", "data/maintenance_items.json", "data/materials.json", "data/sir_actions.json", "data/cm_levels.json"]
+"sed_reporting.project_data" = ["project.schema.json", "element_library.schema.json", "territorial_authorities.schema.json", "maintenance_items.schema.json", "materials.schema.json", "sir_actions.schema.json", "cm_levels.schema.json"]
+
+[tool.ruff]
+line-length = 200
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]

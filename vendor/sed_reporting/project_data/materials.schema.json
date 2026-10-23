@@ -1,0 +1,134 @@
+{
+  "$defs": {
+    "MaintenanceItems": {
+      "additionalProperties": false,
+      "description": "Items per interval, as the element library gives them for a material.",
+      "properties": {
+        "halfYearly": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Halfyearly",
+          "type": "array"
+        },
+        "fiveYearly": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Fiveyearly",
+          "type": "array"
+        },
+        "tenYearly": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Tenyearly",
+          "type": "array"
+        },
+        "twentyFiveYearly": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Twentyfiveyearly",
+          "type": "array"
+        },
+        "afterFitOutOrAlterations": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Afterfitoutoralterations",
+          "type": "array"
+        },
+        "afterSeismicShakingSls1": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Afterseismicshakingsls1",
+          "type": "array"
+        }
+      },
+      "title": "MaintenanceItems",
+      "type": "object"
+    },
+    "Material": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "b2Label": {
+          "minLength": 1,
+          "title": "B2Label",
+          "type": "string"
+        },
+        "b2MeansOfCompliance": {
+          "default": "B2/AS1",
+          "enum": [
+            "B2/AS1",
+            "Alternative Solution"
+          ],
+          "title": "B2Meansofcompliance",
+          "type": "string"
+        },
+        "b2Details": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "B2Details"
+        },
+        "maintenance": {
+          "$ref": "#/$defs/MaintenanceItems",
+          "default": {
+            "halfYearly": [],
+            "fiveYearly": [],
+            "tenYearly": [],
+            "twentyFiveYearly": [],
+            "afterFitOutOrAlterations": [],
+            "afterSeismicShakingSls1": []
+          }
+        }
+      },
+      "required": [
+        "name",
+        "b2Label",
+        "b2Details"
+      ],
+      "title": "Material",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "materials": {
+      "items": {
+        "$ref": "#/$defs/Material"
+      },
+      "title": "Materials",
+      "type": "array"
+    }
+  },
+  "required": [
+    "materials"
+  ],
+  "title": "Materials",
+  "type": "object"
+}

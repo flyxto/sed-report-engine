@@ -1,0 +1,2239 @@
+{
+  "$defs": {
+    "Architect": {
+      "description": "The architect: sed.works is the architects' portal. Requested as `architect`\n(docs/portal_data_requests.md); not sent yet.",
+      "properties": {
+        "companyName": {
+          "default": "",
+          "title": "Companyname",
+          "type": "string"
+        },
+        "name": {
+          "default": "",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "title": "Architect",
+      "type": "object"
+    },
+    "Assembly": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "category": {
+          "minLength": 1,
+          "title": "Category",
+          "type": "string"
+        },
+        "code": {
+          "default": "",
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "calculatedTotalWeight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Calculatedtotalweight"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "name"
+      ],
+      "title": "Assembly",
+      "type": "object"
+    },
+    "BarrierLoads": {
+      "additionalProperties": false,
+      "properties": {
+        "lineKnPerM": {
+          "exclusiveMinimum": 0,
+          "title": "Lineknperm",
+          "type": "number"
+        },
+        "concentratedKn": {
+          "exclusiveMinimum": 0,
+          "title": "Concentratedkn",
+          "type": "number"
+        },
+        "infillKpa": {
+          "exclusiveMinimum": 0,
+          "title": "Infillkpa",
+          "type": "number"
+        }
+      },
+      "required": [
+        "lineKnPerM",
+        "concentratedKn",
+        "infillKpa"
+      ],
+      "title": "BarrierLoads",
+      "type": "object"
+    },
+    "Builder": {
+      "description": "The builder on the project, as the portal sends it.",
+      "properties": {
+        "id": {
+          "default": "",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "default": "",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "title": "Builder",
+      "type": "object"
+    },
+    "Client": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "email": {
+          "default": "",
+          "title": "Email",
+          "type": "string"
+        },
+        "phone": {
+          "default": "",
+          "title": "Phone",
+          "type": "string"
+        },
+        "companyName": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Companyname"
+        },
+        "address": {
+          "default": "",
+          "title": "Address",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "Client",
+      "type": "object"
+    },
+    "ConcreteDurability": {
+      "additionalProperties": false,
+      "properties": {
+        "exposureClassification": {
+          "enum": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C (30% FA)"
+          ],
+          "title": "Exposureclassification",
+          "type": "string"
+        }
+      },
+      "required": [
+        "exposureClassification"
+      ],
+      "title": "ConcreteDurability",
+      "type": "object"
+    },
+    "Correction": {
+      "additionalProperties": false,
+      "description": "One attempt by the builder, uploaded through the link in a failure notice.",
+      "properties": {
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "photos": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Photos",
+          "type": "array"
+        },
+        "submittedAt": {
+          "format": "date-time",
+          "title": "Submittedat",
+          "type": "string"
+        },
+        "submittedBy": {
+          "minLength": 1,
+          "title": "Submittedby",
+          "type": "string"
+        },
+        "review": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CorrectionReview"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "photos",
+        "submittedAt",
+        "submittedBy"
+      ],
+      "title": "Correction",
+      "type": "object"
+    },
+    "CorrectionReview": {
+      "additionalProperties": false,
+      "description": "The engineer's decision on a correction.",
+      "properties": {
+        "decision": {
+          "enum": [
+            "Approved",
+            "Rejected"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "reviewedAt": {
+          "format": "date-time",
+          "title": "Reviewedat",
+          "type": "string"
+        },
+        "reviewedBy": {
+          "minLength": 1,
+          "title": "Reviewedby",
+          "type": "string"
+        },
+        "comment": {
+          "default": "",
+          "title": "Comment",
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision",
+        "reviewedAt",
+        "reviewedBy"
+      ],
+      "title": "CorrectionReview",
+      "type": "object"
+    },
+    "DrawingReview": {
+      "description": "A completed review of the project's drawing set (there is one set per\nproject, not drawings per element). Each review is a revision of the set, \"<job number>-DRG-Rev A\", B, …; requested as\n`drawingReviews` (docs/portal_data_requests.md); not sent yet.",
+      "properties": {
+        "completedAt": {
+          "format": "date-time",
+          "title": "Completedat",
+          "type": "string"
+        }
+      },
+      "required": [
+        "completedAt"
+      ],
+      "title": "DrawingReview",
+      "type": "object"
+    },
+    "Durability": {
+      "additionalProperties": false,
+      "properties": {
+        "steelFixings": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SteelFixings"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "concrete": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ConcreteDurability"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "steel": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SteelDurability"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Durability",
+      "type": "object"
+    },
+    "Element": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "type": {
+          "minLength": 1,
+          "title": "Type",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "calculationReportUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Calculationreporturl"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "description"
+      ],
+      "title": "Element",
+      "type": "object"
+    },
+    "FailureNotice": {
+      "additionalProperties": false,
+      "description": "An email to the site contact with the link to upload a correction. Sent\nwhen an observation fails, and again after a correction is rejected.",
+      "properties": {
+        "sentAt": {
+          "format": "date-time",
+          "title": "Sentat",
+          "type": "string"
+        },
+        "sentTo": {
+          "minLength": 1,
+          "title": "Sentto",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sentAt",
+        "sentTo"
+      ],
+      "title": "FailureNotice",
+      "type": "object"
+    },
+    "FoundationsInputs": {
+      "additionalProperties": false,
+      "properties": {
+        "groundConditions": {
+          "enum": [
+            "Good Ground (NZS 3604)",
+            "TC1",
+            "TC2",
+            "TC3"
+          ],
+          "title": "Groundconditions",
+          "type": "string"
+        },
+        "expansiveSoilsSuspected": {
+          "title": "Expansivesoilssuspected",
+          "type": "boolean"
+        },
+        "siteSoilsClass": {
+          "anyOf": [
+            {
+              "enum": [
+                "A",
+                "S",
+                "M",
+                "H1",
+                "H2",
+                "E"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sitesoilsclass"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        }
+      },
+      "required": [
+        "groundConditions",
+        "expansiveSoilsSuspected"
+      ],
+      "title": "FoundationsInputs",
+      "type": "object"
+    },
+    "GeotechnicalReport": {
+      "description": "The site's geotechnical report, as captured when it is uploaded to the\nportal. Requested as `geotechnicalReport` (docs/portal_data_requests.md);\nnot sent yet.",
+      "properties": {
+        "authorCompany": {
+          "minLength": 1,
+          "title": "Authorcompany",
+          "type": "string"
+        },
+        "reference": {
+          "default": "",
+          "title": "Reference",
+          "type": "string"
+        },
+        "revision": {
+          "default": "",
+          "title": "Revision",
+          "type": "string"
+        },
+        "issueDate": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedate"
+        },
+        "fileUrl": {
+          "default": "",
+          "title": "Fileurl",
+          "type": "string"
+        }
+      },
+      "required": [
+        "authorCompany"
+      ],
+      "title": "GeotechnicalReport",
+      "type": "object"
+    },
+    "InspectedItem": {
+      "additionalProperties": false,
+      "description": "One checklist item inspected on a visit, with its observations.",
+      "properties": {
+        "inspection": {
+          "minLength": 1,
+          "title": "Inspection",
+          "type": "string"
+        },
+        "elements": {
+          "default": [],
+          "items": {
+            "type": "integer"
+          },
+          "title": "Elements",
+          "type": "array"
+        },
+        "element": {
+          "default": "",
+          "title": "Element",
+          "type": "string"
+        },
+        "drawingSheets": {
+          "default": "",
+          "title": "Drawingsheets",
+          "type": "string"
+        },
+        "observations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Observation"
+          },
+          "title": "Observations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "inspection"
+      ],
+      "title": "InspectedItem",
+      "type": "object"
+    },
+    "Inspection": {
+      "additionalProperties": false,
+      "description": "An inspection on the project's checklist: a row of the PS1's Construction\nMonitoring Schedule, and what a SIR inspects. Defined per element type in the\nlibrary, or added on the project (reports.sir.additionalInspections).",
+      "properties": {
+        "item": {
+          "minLength": 1,
+          "title": "Item",
+          "type": "string"
+        },
+        "timeframe": {
+          "default": "",
+          "title": "Timeframe",
+          "type": "string"
+        },
+        "monitoredBy": {
+          "default": "Structural Engineer",
+          "minLength": 1,
+          "title": "Monitoredby",
+          "type": "string"
+        },
+        "onSite": {
+          "default": true,
+          "title": "Onsite",
+          "type": "boolean"
+        },
+        "observations": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Observations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "item"
+      ],
+      "title": "Inspection",
+      "type": "object"
+    },
+    "LiveLoad": {
+      "additionalProperties": false,
+      "properties": {
+        "area": {
+          "minLength": 1,
+          "title": "Area",
+          "type": "string"
+        },
+        "distributedKpa": {
+          "exclusiveMinimum": 0,
+          "title": "Distributedkpa",
+          "type": "number"
+        },
+        "pointKn": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pointkn"
+        },
+        "pointKnRange": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pointknrange"
+        }
+      },
+      "required": [
+        "area",
+        "distributedKpa"
+      ],
+      "title": "LiveLoad",
+      "type": "object"
+    },
+    "MaintenanceSchedule": {
+      "additionalProperties": false,
+      "description": "The engineer's edits per interval. None = the element library's items for\nthe materials used; an empty list = none (\"Not applicable.\").",
+      "properties": {
+        "halfYearly": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Halfyearly"
+        },
+        "fiveYearly": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fiveyearly"
+        },
+        "tenYearly": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tenyearly"
+        },
+        "twentyFiveYearly": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Twentyfiveyearly"
+        },
+        "afterFitOutOrAlterations": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Afterfitoutoralterations"
+        },
+        "afterSeismicShakingSls1": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Afterseismicshakingsls1"
+        }
+      },
+      "title": "MaintenanceSchedule",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "description": "One observation. Its `id` is stable (set by the portal or app when it is\ncreated) so the correction link always reaches this record, whatever happens\nto the observations around it.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "photos": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Photos",
+          "type": "array"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "enum": [
+                "Pass",
+                "Fail"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Result"
+        },
+        "requiredCorrection": {
+          "default": "",
+          "title": "Requiredcorrection",
+          "type": "string"
+        },
+        "notices": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FailureNotice"
+          },
+          "title": "Notices",
+          "type": "array"
+        },
+        "corrections": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Correction"
+          },
+          "title": "Corrections",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "OfficeCheck": {
+      "additionalProperties": false,
+      "description": "A checklist item done in the office (e.g. Shop Drawing Check), marked complete.",
+      "properties": {
+        "inspection": {
+          "minLength": 1,
+          "title": "Inspection",
+          "type": "string"
+        },
+        "completedOn": {
+          "format": "date",
+          "title": "Completedon",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        }
+      },
+      "required": [
+        "inspection",
+        "completedOn"
+      ],
+      "title": "OfficeCheck",
+      "type": "object"
+    },
+    "Ps1CertificateData": {
+      "description": "The engineering firm that signs off the design (not the portal company),\nand its signatory.",
+      "properties": {
+        "issuer": {
+          "minLength": 1,
+          "title": "Issuer",
+          "type": "string"
+        },
+        "issuerShortName": {
+          "default": "",
+          "title": "Issuershortname",
+          "type": "string"
+        },
+        "issuerPhone": {
+          "default": "",
+          "title": "Issuerphone",
+          "type": "string"
+        },
+        "issuerEmail": {
+          "default": "",
+          "title": "Issueremail",
+          "type": "string"
+        },
+        "issuerAddress": {
+          "default": "",
+          "title": "Issueraddress",
+          "type": "string"
+        },
+        "issuerPostalAddress": {
+          "default": "",
+          "title": "Issuerpostaladdress",
+          "type": "string"
+        },
+        "issuerPhoneAfterHours": {
+          "default": "",
+          "title": "Issuerphoneafterhours",
+          "type": "string"
+        },
+        "issuerWebsite": {
+          "default": "",
+          "title": "Issuerwebsite",
+          "type": "string"
+        },
+        "issuerPiInsuranceNzd": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuerpiinsurancenzd"
+        },
+        "issuerAceNzMember": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issueracenzmember"
+        },
+        "issuerLogoUrl": {
+          "default": "",
+          "title": "Issuerlogourl",
+          "type": "string"
+        },
+        "issuedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedat"
+        },
+        "signedByName": {
+          "default": "",
+          "title": "Signedbyname",
+          "type": "string"
+        },
+        "signedByTitle": {
+          "default": "",
+          "title": "Signedbytitle",
+          "type": "string"
+        },
+        "licenceNumber": {
+          "default": "",
+          "title": "Licencenumber",
+          "type": "string"
+        }
+      },
+      "required": [
+        "issuer"
+      ],
+      "title": "Ps1CertificateData",
+      "type": "object"
+    },
+    "Ps1Documents": {
+      "additionalProperties": false,
+      "description": "The attachments to include. The Structural Maintenance Schedule is not a\nchoice: it is included when any of its items is ticked.",
+      "properties": {
+        "certificateOfDesignWork": {
+          "default": true,
+          "title": "Certificateofdesignwork",
+          "type": "boolean"
+        },
+        "constructionMonitoringSchedule": {
+          "default": true,
+          "title": "Constructionmonitoringschedule",
+          "type": "boolean"
+        },
+        "b2LetterInLieu": {
+          "default": true,
+          "title": "B2Letterinlieu",
+          "type": "boolean"
+        }
+      },
+      "title": "Ps1Documents",
+      "type": "object"
+    },
+    "Ps1Inputs": {
+      "additionalProperties": false,
+      "description": "The engineer's inputs for the PS1 package. Not inputs: whether alternative\nsolutions were adopted (the Structural Calculations Report's list), the firm\nand engineer details (the portal's issuer and reviewing engineer), and the\nissue dates (stamped on issue).",
+      "properties": {
+        "codeClauses": {
+          "default": [
+            "B1"
+          ],
+          "items": {
+            "enum": [
+              "B1",
+              "B2",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "C6",
+              "D1",
+              "D2",
+              "F6",
+              "F7",
+              "F8",
+              "G4",
+              "G9"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Codeclauses",
+          "type": "array"
+        },
+        "extent": {
+          "default": "part",
+          "enum": [
+            "all",
+            "part"
+          ],
+          "title": "Extent",
+          "type": "string"
+        },
+        "engagedBy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engagedby"
+        },
+        "verificationMethods": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verificationmethods"
+        },
+        "designAssumptions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Designassumptions",
+          "type": "array"
+        },
+        "constructionMonitoringLevel": {
+          "default": "CM3",
+          "enum": [
+            "CM1",
+            "CM2",
+            "CM3",
+            "CM4",
+            "CM5",
+            "Nil"
+          ],
+          "title": "Constructionmonitoringlevel",
+          "type": "string"
+        },
+        "waivers": {
+          "$ref": "#/$defs/Waivers",
+          "default": {
+            "required": false,
+            "details": null
+          }
+        },
+        "liabilityCapNzd": {
+          "default": 200000,
+          "enum": [
+            200000,
+            500000
+          ],
+          "title": "Liabilitycapnzd",
+          "type": "integer"
+        },
+        "documents": {
+          "$ref": "#/$defs/Ps1Documents",
+          "default": {
+            "certificateOfDesignWork": true,
+            "constructionMonitoringSchedule": true,
+            "b2LetterInLieu": true
+          }
+        },
+        "rbw": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RbwRowInput"
+          },
+          "default": {},
+          "propertyNames": {
+            "enum": [
+              "Foundations",
+              "Subfloor framing",
+              "Retaining walls",
+              "Beams",
+              "Portal",
+              "Bracing",
+              "Other (primary)"
+            ]
+          },
+          "title": "Rbw",
+          "type": "object"
+        },
+        "maintenanceSchedule": {
+          "$ref": "#/$defs/MaintenanceSchedule",
+          "default": {
+            "halfYearly": null,
+            "fiveYearly": null,
+            "tenYearly": null,
+            "twentyFiveYearly": null,
+            "afterFitOutOrAlterations": null,
+            "afterSeismicShakingSls1": null
+          }
+        },
+        "revisions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Ps1Revision"
+          },
+          "title": "Revisions",
+          "type": "array"
+        }
+      },
+      "title": "Ps1Inputs",
+      "type": "object"
+    },
+    "Ps1Revision": {
+      "additionalProperties": false,
+      "description": "One issue of the PS1 (Rev A, B, …). Only the description is typed: the\nletter follows its position, and the moment of issue and the documents it\ncited are stamped on issue. When the SCR or the drawing set moves past what\nthe latest issued revision cites, the PS1 needs a new revision.",
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "issuedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedat"
+        },
+        "citesCalculations": {
+          "default": "",
+          "title": "Citescalculations",
+          "type": "string"
+        },
+        "citesDrawings": {
+          "default": "",
+          "title": "Citesdrawings",
+          "type": "string"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "Ps1Revision",
+      "type": "object"
+    },
+    "Ps4Inputs": {
+      "additionalProperties": false,
+      "description": "The PS4: what the builder uploads with the PS4 order, the one engineer\nchoice, and the revision record. Everything else is shared with the PS1 or\ncomes from the portal.",
+      "properties": {
+        "ps3S": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SuppliedDocument"
+          },
+          "title": "Ps3S",
+          "type": "array"
+        },
+        "recordOfWork": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SuppliedDocument"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "recordOfWorkRequired": {
+          "default": true,
+          "title": "Recordofworkrequired",
+          "type": "boolean"
+        },
+        "revisions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Ps4Revision"
+          },
+          "title": "Revisions",
+          "type": "array"
+        }
+      },
+      "title": "Ps4Inputs",
+      "type": "object"
+    },
+    "Ps4Revision": {
+      "additionalProperties": false,
+      "description": "One issue of the PS4 (Rev A, B, …), as for the PS1: only the description\nis typed; the moment of issue and what it cited are stamped on issue.",
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "issuedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedat"
+        },
+        "citesPs1": {
+          "default": "",
+          "title": "Citesps1",
+          "type": "string"
+        },
+        "citesSirs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Citessirs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "Ps4Revision",
+      "type": "object"
+    },
+    "RbwRowInput": {
+      "additionalProperties": false,
+      "description": "The engineer's entries for one row of the Certificate of Design Work.",
+      "properties": {
+        "description": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "carriedOutOrSupervised": {
+          "anyOf": [
+            {
+              "enum": [
+                "Carried out",
+                "Supervised"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Carriedoutorsupervised"
+        }
+      },
+      "title": "RbwRowInput",
+      "type": "object"
+    },
+    "Reports": {
+      "additionalProperties": false,
+      "properties": {
+        "ps1": {
+          "$ref": "#/$defs/Ps1Inputs",
+          "default": {
+            "codeClauses": [
+              "B1"
+            ],
+            "extent": "part",
+            "engagedBy": null,
+            "verificationMethods": null,
+            "designAssumptions": [],
+            "constructionMonitoringLevel": "CM3",
+            "waivers": {
+              "details": null,
+              "required": false
+            },
+            "liabilityCapNzd": 200000,
+            "documents": {
+              "b2LetterInLieu": true,
+              "certificateOfDesignWork": true,
+              "constructionMonitoringSchedule": true
+            },
+            "rbw": {},
+            "maintenanceSchedule": {
+              "afterFitOutOrAlterations": null,
+              "afterSeismicShakingSls1": null,
+              "fiveYearly": null,
+              "halfYearly": null,
+              "tenYearly": null,
+              "twentyFiveYearly": null
+            },
+            "revisions": []
+          }
+        },
+        "scr": {
+          "$ref": "#/$defs/ScrInputs",
+          "default": {
+            "importanceLevel": "IL2",
+            "revisions": [],
+            "scopeExtra": [],
+            "alternativeSolutions": [],
+            "narratives": {},
+            "liveLoads": null,
+            "barrierLoads": null,
+            "foundations": null
+          }
+        },
+        "sir": {
+          "$ref": "#/$defs/SirInputs",
+          "default": {
+            "additionalInspections": [],
+            "visits": [],
+            "officeChecks": []
+          }
+        },
+        "rfi": {
+          "$ref": "#/$defs/RfiInputs",
+          "default": {
+            "rounds": []
+          }
+        },
+        "ps4": {
+          "$ref": "#/$defs/Ps4Inputs",
+          "default": {
+            "ps3S": [],
+            "recordOfWork": null,
+            "recordOfWorkRequired": true,
+            "revisions": []
+          }
+        }
+      },
+      "title": "Reports",
+      "type": "object"
+    },
+    "ReviewingEngineer": {
+      "description": "The project's engineer. With the calculations and reports automated, the\nsame engineer prepares and reviews the Structural Calculations Report, and\nsigns the PS1. Everything below `handle` is requested from the portal\n(docs/portal_data_requests.md); not sent yet.",
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "handle": {
+          "default": "",
+          "title": "Handle",
+          "type": "string"
+        },
+        "position": {
+          "default": "",
+          "title": "Position",
+          "type": "string"
+        },
+        "charteredStatus": {
+          "default": "",
+          "title": "Charteredstatus",
+          "type": "string"
+        },
+        "cpengNumber": {
+          "default": "",
+          "title": "Cpengnumber",
+          "type": "string"
+        },
+        "qualifications": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Qualifications",
+          "type": "array"
+        },
+        "mobile": {
+          "default": "",
+          "title": "Mobile",
+          "type": "string"
+        },
+        "signatureUrl": {
+          "default": "",
+          "title": "Signatureurl",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ReviewingEngineer",
+      "type": "object"
+    },
+    "Revision": {
+      "additionalProperties": false,
+      "description": "One entry in the revision record. Only the description is entered: the\nletter follows the entry's position (A, B, …) and the date, and the drawing\nset it cited, are stamped when the revision is issued. When the drawing set\nmoves past what the latest issued revision cites, the SCR needs a new\nrevision.",
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "issuedOn": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedon"
+        },
+        "citesDrawings": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Citesdrawings"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "Revision",
+      "type": "object"
+    },
+    "RfiInputs": {
+      "additionalProperties": false,
+      "properties": {
+        "rounds": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RfiRound"
+          },
+          "title": "Rounds",
+          "type": "array"
+        }
+      },
+      "title": "RfiInputs",
+      "type": "object"
+    },
+    "RfiItem": {
+      "additionalProperties": false,
+      "description": "One request in a council's RFI, pasted by the architect into its own box,\nand the reviewing engineer's answer. Its `id` is stable (set by the portal\nwhen the architect adds it).",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "heading": {
+          "default": "",
+          "title": "Heading",
+          "type": "string"
+        },
+        "question": {
+          "minLength": 1,
+          "title": "Question",
+          "type": "string"
+        },
+        "answer": {
+          "default": "",
+          "title": "Answer",
+          "type": "string"
+        },
+        "images": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Images",
+          "type": "array"
+        },
+        "drawings": {
+          "anyOf": [
+            {
+              "enum": [
+                "cited",
+                "revised"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Drawings"
+        },
+        "drawingSheets": {
+          "default": "",
+          "title": "Drawingsheets",
+          "type": "string"
+        },
+        "calculations": {
+          "anyOf": [
+            {
+              "enum": [
+                "cited",
+                "revised"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Calculations"
+        },
+        "ps1": {
+          "anyOf": [
+            {
+              "enum": [
+                "cited",
+                "revised"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ps1"
+        },
+        "externalId": {
+          "default": "",
+          "title": "Externalid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "question"
+      ],
+      "title": "RfiItem",
+      "type": "object"
+    },
+    "RfiRound": {
+      "additionalProperties": false,
+      "description": "One council RFI and our response letter: RFI01, RFI02, … (a further RFI\nfrom the council is a new round). The architect enters the items; the\nreviewing engineer answers and submits, which issues the letter. No dates\nare typed.",
+      "properties": {
+        "number": {
+          "minimum": 1,
+          "title": "Number",
+          "type": "integer"
+        },
+        "receivedAt": {
+          "format": "date-time",
+          "title": "Receivedat",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/RfiItem"
+          },
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        },
+        "issuedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedat"
+        }
+      },
+      "required": [
+        "number",
+        "receivedAt",
+        "items"
+      ],
+      "title": "RfiRound",
+      "type": "object"
+    },
+    "ScrInputs": {
+      "additionalProperties": false,
+      "properties": {
+        "importanceLevel": {
+          "default": "IL2",
+          "enum": [
+            "IL1",
+            "IL2",
+            "IL3",
+            "IL4"
+          ],
+          "title": "Importancelevel",
+          "type": "string"
+        },
+        "revisions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Revision"
+          },
+          "title": "Revisions",
+          "type": "array"
+        },
+        "scopeExtra": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Scopeextra",
+          "type": "array"
+        },
+        "alternativeSolutions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Alternativesolutions",
+          "type": "array"
+        },
+        "narratives": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "default": {},
+          "title": "Narratives",
+          "type": "object"
+        },
+        "liveLoads": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/LiveLoad"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Liveloads"
+        },
+        "barrierLoads": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BarrierLoads"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "foundations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FoundationsInputs"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "ScrInputs",
+      "type": "object"
+    },
+    "SirInputs": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalInspections": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Inspection"
+          },
+          "title": "Additionalinspections",
+          "type": "array"
+        },
+        "visits": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SiteVisit"
+          },
+          "title": "Visits",
+          "type": "array"
+        },
+        "officeChecks": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/OfficeCheck"
+          },
+          "title": "Officechecks",
+          "type": "array"
+        }
+      },
+      "title": "SirInputs",
+      "type": "object"
+    },
+    "SiteContact": {
+      "additionalProperties": false,
+      "description": "The builder's site contact, from the inspection order. The email receives\nthe link to upload corrections when an observation fails.",
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "phone": {
+          "default": "",
+          "title": "Phone",
+          "type": "string"
+        },
+        "email": {
+          "default": "",
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "SiteContact",
+      "type": "object"
+    },
+    "SiteVisit": {
+      "additionalProperties": false,
+      "description": "One Site Inspection Report: SIR01, SIR02, … (the number is set by the\nportal when the report is started). It stays a draft until every observation\nhas passed or its failure has an approved correction; then it is issued.",
+      "properties": {
+        "number": {
+          "minimum": 1,
+          "title": "Number",
+          "type": "integer"
+        },
+        "inspectionDate": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inspectiondate"
+        },
+        "siteContact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SiteContact"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "items": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/InspectedItem"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "actions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "issuedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedat"
+        },
+        "pdfUrl": {
+          "default": "",
+          "title": "Pdfurl",
+          "type": "string"
+        }
+      },
+      "required": [
+        "number"
+      ],
+      "title": "SiteVisit",
+      "type": "object"
+    },
+    "SteelDurability": {
+      "additionalProperties": false,
+      "properties": {
+        "macroclimateCategory": {
+          "enum": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5-M"
+          ],
+          "title": "Macroclimatecategory",
+          "type": "string"
+        },
+        "constructionCategory": {
+          "enum": [
+            "CC1",
+            "CC2",
+            "CC3",
+            "CC4"
+          ],
+          "title": "Constructioncategory",
+          "type": "string"
+        }
+      },
+      "required": [
+        "macroclimateCategory",
+        "constructionCategory"
+      ],
+      "title": "SteelDurability",
+      "type": "object"
+    },
+    "SteelFixings": {
+      "additionalProperties": false,
+      "properties": {
+        "exposureZone": {
+          "enum": [
+            "Zone B and C",
+            "Zone D"
+          ],
+          "title": "Exposurezone",
+          "type": "string"
+        }
+      },
+      "required": [
+        "exposureZone"
+      ],
+      "title": "SteelFixings",
+      "type": "object"
+    },
+    "Structural": {
+      "properties": {
+        "ulsBearing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ulsbearing"
+        },
+        "windZone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Windzone"
+        },
+        "snowZone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Snowzone"
+        },
+        "snowElevation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Snowelevation"
+        }
+      },
+      "title": "Structural",
+      "type": "object"
+    },
+    "SuppliedDocument": {
+      "additionalProperties": false,
+      "description": "A document someone else issued, uploaded by the builder with the PS4\norder: a PS3 from the steel fabricator, or the builder's Record of Work.\nThe PS4 lists it in its Schedule and attaches it.",
+      "properties": {
+        "fileUrl": {
+          "minLength": 1,
+          "title": "Fileurl",
+          "type": "string"
+        },
+        "issuedBy": {
+          "default": "",
+          "title": "Issuedby",
+          "type": "string"
+        },
+        "issuedOn": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuedon"
+        },
+        "uploadedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Uploadedat"
+        }
+      },
+      "required": [
+        "fileUrl"
+      ],
+      "title": "SuppliedDocument",
+      "type": "object"
+    },
+    "Waivers": {
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "details": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Details"
+        }
+      },
+      "required": [
+        "required"
+      ],
+      "title": "Waivers",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "projectId": {
+      "minLength": 1,
+      "title": "Projectid",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "projectDescription": {
+      "default": "",
+      "title": "Projectdescription",
+      "type": "string"
+    },
+    "siteAddress": {
+      "minLength": 1,
+      "title": "Siteaddress",
+      "type": "string"
+    },
+    "siteStreetAddress": {
+      "default": "",
+      "title": "Sitestreetaddress",
+      "type": "string"
+    },
+    "siteSuburb": {
+      "default": "",
+      "title": "Sitesuburb",
+      "type": "string"
+    },
+    "siteTownCity": {
+      "default": "",
+      "title": "Sitetowncity",
+      "type": "string"
+    },
+    "sitePostcode": {
+      "default": "",
+      "title": "Sitepostcode",
+      "type": "string"
+    },
+    "legalDescription": {
+      "default": "",
+      "title": "Legaldescription",
+      "type": "string"
+    },
+    "territorialAuthority": {
+      "default": "",
+      "title": "Territorialauthority",
+      "type": "string"
+    },
+    "status": {
+      "default": "",
+      "title": "Status",
+      "type": "string"
+    },
+    "buildingConsentNumber": {
+      "default": "",
+      "title": "Buildingconsentnumber",
+      "type": "string"
+    },
+    "buildingConsentAmendments": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Buildingconsentamendments",
+      "type": "array"
+    },
+    "client": {
+      "$ref": "#/$defs/Client"
+    },
+    "internalReviewingEngineer": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewingEngineer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "inspectionEngineer": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewingEngineer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "ps1CertificateData": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Ps1CertificateData"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "structural": {
+      "$ref": "#/$defs/Structural",
+      "default": {
+        "ulsBearing": null,
+        "windZone": null,
+        "snowZone": null,
+        "snowElevation": null
+      }
+    },
+    "assemblies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Assembly"
+      },
+      "title": "Assemblies",
+      "type": "array"
+    },
+    "architect": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Architect"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "builder": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Builder"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "drawingReviews": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DrawingReview"
+      },
+      "title": "Drawingreviews",
+      "type": "array"
+    },
+    "geotechnicalReport": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GeotechnicalReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "structuralCalculationReportUrl": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Structuralcalculationreporturl"
+    },
+    "elements": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Element"
+      },
+      "title": "Elements",
+      "type": "array"
+    },
+    "durability": {
+      "$ref": "#/$defs/Durability",
+      "default": {
+        "steelFixings": null,
+        "concrete": null,
+        "steel": null
+      }
+    },
+    "reports": {
+      "$ref": "#/$defs/Reports",
+      "default": {
+        "ps1": {
+          "codeClauses": [
+            "B1"
+          ],
+          "constructionMonitoringLevel": "CM3",
+          "designAssumptions": [],
+          "documents": {
+            "b2LetterInLieu": true,
+            "certificateOfDesignWork": true,
+            "constructionMonitoringSchedule": true
+          },
+          "engagedBy": null,
+          "extent": "part",
+          "liabilityCapNzd": 200000,
+          "maintenanceSchedule": {
+            "afterFitOutOrAlterations": null,
+            "afterSeismicShakingSls1": null,
+            "fiveYearly": null,
+            "halfYearly": null,
+            "tenYearly": null,
+            "twentyFiveYearly": null
+          },
+          "rbw": {},
+          "revisions": [],
+          "verificationMethods": null,
+          "waivers": {
+            "details": null,
+            "required": false
+          }
+        },
+        "scr": {
+          "alternativeSolutions": [],
+          "barrierLoads": null,
+          "foundations": null,
+          "importanceLevel": "IL2",
+          "liveLoads": null,
+          "narratives": {},
+          "revisions": [],
+          "scopeExtra": []
+        },
+        "sir": {
+          "additionalInspections": [],
+          "officeChecks": [],
+          "visits": []
+        },
+        "rfi": {
+          "rounds": []
+        },
+        "ps4": {
+          "ps3S": [],
+          "recordOfWork": null,
+          "recordOfWorkRequired": true,
+          "revisions": []
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "projectId",
+    "name",
+    "siteAddress",
+    "client"
+  ],
+  "title": "Project",
+  "type": "object"
+}

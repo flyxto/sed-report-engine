@@ -1,0 +1,15 @@
+# Runtime
+pypdf>=4.0
+reportlab>=4.0
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2          # already installed with FastAPI; declared because the PS1 model imports it
+pillow>=10           # already installed with ReportLab; declared because the SIR scales site photos with it
+cryptography>=3.1    # pypdf needs it to open AES-encrypted PDFs (third-party PS3s and Records of Work the PS4 attaches)
+
+# `reporting` is not pip-installed (see README) — it is found through this repo's
+# parent directory on PYTHONPATH — so its own runtime dependency is listed here.
+svglib>=1.5
+
+# Tests
+pytest>=8.0

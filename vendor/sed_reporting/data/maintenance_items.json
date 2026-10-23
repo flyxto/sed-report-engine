@@ -1,0 +1,34 @@
+{
+  "halfYearly": [
+    "Veranda steelwork",
+    "Steel Carpark structure (beams, columns, braces etc)",
+    "Deck and balcony steelwork",
+    "Exposed façade steelwork, both primary and secondary structure",
+    "Plantrooms and plenums with fresh-air intakes",
+    "External structural components such as Buckling Restrained Braces, Viscous Dampers, Eccentrically Braced Frames and the like",
+    "Sub-ground floor mild-steel structures such as beams, isolation bearings etc.",
+    "Exposed timber fixings (e.g. bolts and brackets)"
+  ],
+  "fiveYearly": [
+    "Inspect and repair sealant that encloses structural mild-steel components and/or timber with mild-steel fixings."
+  ],
+  "tenYearly": [
+    "Check exposed timber fixings for corrosion, repair as required.",
+    "Inspect/replace sealant that encloses structural mild-steel components and/or timber with mild-steel fixings. This will typically include sealants around the perimeter of precast panels. Note that 10 years is the expected useful life for many sealants.",
+    "Check exposed structural steel within plantrooms and plenums for corrosion. Repair protective coatings as required.",
+    "Check all exposed steelwork that is not in a fully interior environment for signs of corrosion. Repair protective coatings as required.",
+    "Audit of damage to exposed intumescent coatings. Repair as required."
+  ],
+  "twentyFiveYearly": [
+    "Inspect samples of structural steel that is hidden from view but not enclosed within a vapour barrier, and repair protective coatings as necessary. A typical example is a veranda with built-in steelwork. (Such steelwork should typically have duplex protective coatings). Inspection may typically require removal of claddings and/or the drilling of holes for borescope access. Repair as required.",
+    "Inspect all exposed, external timber. Repair as required.",
+    "Inspect all exposed, external reinforced concrete for signs of spalling or cracking. Repair as required.",
+    "Audit of damage to enclosed intumescent coatings. Repair as required."
+  ],
+  "afterFitOutOrAlterations": [
+    "Audit of damage to intumescent coatings. Repair as required."
+  ],
+  "afterSeismicShakingSls1": [
+    "Inspections and repair as per above"
+  ]
+}

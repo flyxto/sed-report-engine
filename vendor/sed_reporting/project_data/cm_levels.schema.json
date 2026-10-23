@@ -1,0 +1,58 @@
+{
+  "$defs": {
+    "CmLevel": {
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "enum": [
+            "CM1",
+            "CM2",
+            "CM3",
+            "CM4",
+            "CM5"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "review": {
+          "minLength": 1,
+          "title": "Review",
+          "type": "string"
+        },
+        "comment": {
+          "minLength": 1,
+          "title": "Comment",
+          "type": "string"
+        }
+      },
+      "required": [
+        "level",
+        "review",
+        "comment"
+      ],
+      "title": "CmLevel",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "levels": {
+      "items": {
+        "$ref": "#/$defs/CmLevel"
+      },
+      "title": "Levels",
+      "type": "array"
+    }
+  },
+  "required": [
+    "source",
+    "levels"
+  ],
+  "title": "CmLevels",
+  "type": "object"
+}

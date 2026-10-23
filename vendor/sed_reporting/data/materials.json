@@ -1,0 +1,47 @@
+{
+  "materials": [
+    {
+      "name": "Reinforced concrete",
+      "b2Label": "Reinforced concrete",
+      "b2MeansOfCompliance": "B2/AS1",
+      "b2Details": "Concrete cover to reinforcing has been selected in accordance with NZS3101, Part 1, Section 3"
+    },
+    {
+      "name": "Structural timber",
+      "b2Label": "Structural timber",
+      "b2MeansOfCompliance": "B2/AS1",
+      "b2Details": "Timber treatment has been selected in accordance with Table 1A of B2/AS1"
+    },
+    {
+      "name": "Steel timber fixings",
+      "b2Label": "Steel timber fixings",
+      "b2MeansOfCompliance": "B2/AS1",
+      "b2Details": "Steel fixings for timber have been selected in accordance with NZS 3604:2011, Table 4.1",
+      "maintenance": {
+        "halfYearly": [
+          "Exposed timber fixings (e.g. bolts and brackets)"
+        ],
+        "tenYearly": [
+          "Check exposed timber fixings for corrosion, repair as required."
+        ]
+      }
+    },
+    {
+      "name": "Mild steel",
+      "b2Label": "Mild steel structure",
+      "b2MeansOfCompliance": "Alternative Solution",
+      "b2Details": "Protection for mild steel has been specified in accordance with SNZ TS 3404 – Durability requirements for steel structures and components and AS/NZS2312 – Guide to the protection of structural steel against atmospheric corrosion by the use of protective coatings. This guide works on a time to first maintenance basis and assumes on-going maintenance.",
+      "maintenance": {
+        "twentyFiveYearly": [
+          "Inspect samples of structural steel that is hidden from view but not enclosed within a vapour barrier, and repair protective coatings as necessary. A typical example is a veranda with built-in steelwork. (Such steelwork should typically have duplex protective coatings). Inspection may typically require removal of claddings and/or the drilling of holes for borescope access. Repair as required."
+        ]
+      }
+    },
+    {
+      "name": "Reinforced masonry",
+      "b2Label": "Reinforced masonry",
+      "b2MeansOfCompliance": "B2/AS1",
+      "b2Details": "Cover to reinforcing has been selected in accordance with NZS4229 and NZS4230"
+    }
+  ]
+}

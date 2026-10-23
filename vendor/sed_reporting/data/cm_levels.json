@@ -1,0 +1,30 @@
+{
+  "source": "Construction Monitoring Services, Table 1 – Construction Monitoring Levels",
+  "levels": [
+    {
+      "level": "CM1",
+      "review": "Monitor the outputs from another party's quality assurance programme against the requirements of the plans and specifications. Visit the works at a frequency agreed with the client to review important materials of construction critical work procedures and/or completed plant or components. Be available to advise the constructor on the technical interpretation of the plans and specifications",
+      "comment": "This level is only a secondary service. It may be appropriate where: - For the design consultant when another party is engaged to provide a higher level of construction monitoring or review during the period of construction or - When the project works are the subject of a performance based specification and performance testing is undertaken and monitored by others."
+    },
+    {
+      "level": "CM2",
+      "review": "Review, preferable at the earliest opportunity, a sample of each important work procedure, material of construction and component for compliance with the requirements of the plans and specifications and review a representative sample of each important completed work prior to enclosure or completion is appropriate. Be available to provide the constructor with technical interpretation of the plans and specification.",
+      "comment": "This level of service is appropriate for smaller projects of a routine nature being undertaken by an experienced and competent constructor and where a higher than normal risk of non-compliance is acceptable. It provides for the review of a representative sample of work procedures and materials of construction. The assurance of compliance of the finished work is dependent upon the constructor completing the work to at least the same standard as the representative sample reviewed."
+    },
+    {
+      "level": "CM3",
+      "review": "Review, to an extent agreed with the client, random samples of important work procedures, for compliance with the requirements of the plans and specifications and review important completed work prior to enclosure or on completion as appropriate. Be available to provide the constructor with technical interpretation of the plans and specifications.",
+      "comment": "This level of service is appropriate for medium sized projects of a routine nature being undertaken by an experienced constructor when a normal risk of non-compliance is acceptable."
+    },
+    {
+      "level": "CM4",
+      "review": "Review, at a frequency agreed with the client, regular samples of work procedures, materials of construction and components for compliance with the requirements of the plans and specifications and review the majority of completed work prior to the enclosure or on completion as appropriate.",
+      "comment": "This level of services is appropriate for projects where a lower than normal risk of non-compliance is required."
+    },
+    {
+      "level": "CM5",
+      "review": "Maintain personnel on site to constantly review work procedures, materials of construction and components for compliance with the requirements of the plans and specifications and review completed work prior to enclosure or on completion as appropriate.",
+      "comment": "This level of service is appropriate for - Major projects - Projects where the consequences of failure are critical - Projects involving innovative or complex construction procedures. The level of service provides the client with the greatest assurance that the completed work complies with the requirements of the plans and specifications."
+    }
+  ]
+}

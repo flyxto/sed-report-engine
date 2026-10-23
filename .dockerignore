@@ -1,0 +1,9 @@
+__pycache__
+tests
+*.pyc
+.pytest_cache
+vendor/**/__pycache__
+vendor/**/.venv
+vendor/**/tests
+vendor/**/docs
+vendor/**/.git
