@@ -11,7 +11,7 @@ from datetime import date
 
 from sed_reporting.assembly import ReportMeta, assemble
 from sed_reporting.fonts import pdf_theme
-from sed_reporting.scr.document import TITLE, render_scr_body_pdf
+from sed_reporting.scr.document import EQSE_LOGO_URL, TITLE, render_scr_body_pdf
 from sed_reporting.element import ElementError
 from sed_reporting.project_data import Issue, ProjectData
 
@@ -60,6 +60,11 @@ def build_scr_pdf(pd: ProjectData, fetch: Fetch = fetch_url, today: date | None 
             raise ElementError(f"{name}: could not fetch its calculation report ({type(e).__name__}: {e})") from e
         names.append(name)
 
+    try:
+        logo = fetch(EQSE_LOGO_URL)
+    except Exception:  # noqa: BLE001 - the cover goes without the logo rather than blocking the report
+        logo = None
+
     p = pd.project
     meta = ReportMeta(TITLE, reference=p.project_id, site_address=p.site_address)
-    return assemble(pdfs, meta, names=names, lead=render_scr_body_pdf(pd, today), theme=pdf_theme())
+    return assemble(pdfs, meta, names=names, lead=render_scr_body_pdf(pd, today, logo), theme=pdf_theme())

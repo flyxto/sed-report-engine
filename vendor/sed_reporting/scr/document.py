@@ -144,7 +144,10 @@ def design_item_title(r) -> str:
     return f"Element {r.element.id} – {r.type.name} ({r.type.code}): {r.element.description}"
 
 
-def build_document(pd: ProjectData, today: date | None = None) -> ReportDocument:
+EQSE_LOGO_URL = "https://res.cloudinary.com/vccpsacloud/image/upload/v1793127732/eqse-logo_j8pnxv.png"
+
+
+def build_document(pd: ProjectData, today: date | None = None, logo: bytes | None = None) -> ReportDocument:
     p, scr = pd.project, pd.project.reports.scr
     cert = p.ps1_certificate_data
     firm = cert.issuer if cert else ""                                  # the engineering firm, not the portal
@@ -167,7 +170,7 @@ def build_document(pd: ProjectData, today: date | None = None) -> ReportDocument
             CoverLine("on"), CoverLine(printed, 12, False, 24),
             CoverLine("Report Prepared For"), CoverLine(p.client.name, 13, True, 24),
             CoverLine(f"Project Reference – {p.project_id}"),
-        ]),
+        ], logo_url=EQSE_LOGO_URL, logo=logo),
         SectionHeader("Document Control", level=2),
         InfoCard("Document", [
             ("Report", f"{TITLE} for {description}"), ("Project", p.name), ("Reference", p.project_id),
@@ -304,8 +307,8 @@ def render_scr_html(pd: ProjectData, today: date | None = None) -> str:
     return preview_numbers_in_body_font(out.getvalue())
 
 
-def render_scr_body_pdf(pd: ProjectData, today: date | None = None) -> bytes:
+def render_scr_body_pdf(pd: ProjectData, today: date | None = None, logo: bytes | None = None) -> bytes:
     """The report body as PDF, before the calculation appendix is merged in."""
     out = io.BytesIO()
-    render_pdf(build_document(pd, today), out, theme=pdf_theme())
+    render_pdf(build_document(pd, today, logo), out, theme=pdf_theme())
     return out.getvalue()
