@@ -35,6 +35,7 @@ from sed_reporting.project_data import Issue, ProjectData
 from sed_reporting.project_data.dates import nz_now
 from sed_reporting.ps1.document import build_document
 from sed_reporting.scr.build import Fetch, fetch_url
+from sed_reporting.scr.document import document_id
 from sed_reporting.stamp import stamp_page_numbers
 
 
@@ -96,14 +97,14 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
             if not value:
                 errors.append(Issue("error", "ps1", f"the PS1 can't be issued without the reviewing engineer's {label}"))
     # Everything the PS1 cites must be ready: the SCR revision issued, the drawing set reviewed.
-    # The PS1 cites the SCR's latest issued revision; a later draft revision doesn't matter.
-    if not pd.scr_issued_id:
-        errors.append(Issue("error", "ps1", "the PS1 can't be issued before the Structural Calculations Report "
-                                            "has an issued revision: issue that revision first"))
+    revisions = pd.project.reports.scr.revisions
+    if revisions and not revisions[-1].issued_on:
+        errors.append(Issue("error", "ps1", "the PS1 can't be issued while the Structural Calculations Report "
+                                            "revision it cites is a draft: issue that revision first"))
     if pd.drawing_set is None:
         errors.append(Issue("error", "ps1", "the PS1 can't be issued before the drawing set it cites has a "
                                             "completed review (drawingReviews)"))
-    elif pd.scr_issued_id and (changes := pd.scr_out_of_date):
+    elif revisions and revisions[-1].issued_on and (changes := pd.scr_out_of_date):
         errors.append(Issue("error", "ps1", f"the PS1 can't be issued while the SCR revision it cites "
                                             f"({pd.scr_last_issued_label}) cites drawings that have since been "
                                             f"revised ({'; '.join(changes)}): issue a new SCR revision first"))
@@ -124,7 +125,7 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
 
 def ps1_citations(pd: ProjectData) -> dict[str, str]:
     """What the PS1 cites as it stands, which issuing requires to be ready: the
-    SCR's latest issued revision and the drawing set's. The portal stores them on the
+    SCR's latest revision and the drawing set's. The portal stores them on the
     revision it issues (citesCalculations, citesDrawings), so a later SCR or
     drawing revision shows the PS1 is out of date."""
-    return {"calculations": pd.scr_issued_id or "", "drawings": pd.drawing_set.reference if pd.drawing_set else ""}
+    return {"calculations": document_id(pd) or "", "drawings": pd.drawing_set.reference if pd.drawing_set else ""}

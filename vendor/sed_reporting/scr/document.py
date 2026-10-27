@@ -118,12 +118,13 @@ def geotechnical_report_cited(pd: ProjectData) -> str | None:
 def calculations_cited(pd: ProjectData) -> str:
     """This report as the PS1 and an RFI response cite it: "Structural
     Calculations Report P260703-SCR-Rev B, dated 10 October 2026" (the latest
-    issued revision; a later draft is not cited). With no issued revision there
-    is nothing to cite yet."""
-    issued = [r for r in pd.project.reports.scr.revisions if r.issued_on]
-    if not issued:
-        return f"{TITLE} {missing('an issued revision')}"
-    return f"{TITLE} {pd.scr_issued_id}, dated {long_date(issued[-1].issued_on)}"
+    revision). A draft revision has no date yet, so none is printed; nothing
+    citing it can be issued until it is."""
+    doc = document_id(pd)
+    if not doc:
+        return f"{TITLE} {missing('a revision, which the document ID needs')}"
+    issued_on = pd.project.reports.scr.revisions[-1].issued_on
+    return f"{TITLE} {doc}, dated {long_date(issued_on)}" if issued_on else f"{TITLE} {doc}"
 
 
 def basis_of_opinions(pd: ProjectData) -> list[str]:
