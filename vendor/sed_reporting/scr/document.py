@@ -120,11 +120,16 @@ def calculations_cited(pd: ProjectData) -> str:
     Calculations Report P260703-SCR-Rev B, dated 10 October 2026" (the latest
     revision). A draft revision has no date yet, so none is printed; nothing
     citing it can be issued until it is."""
+    revisions = pd.project.reports.scr.revisions
+    # Cite the latest issued revision even when a newer one is in draft.
+    issued = [i for i, r in enumerate(revisions) if r.issued_on]
+    if issued:
+        i = issued[-1]
+        return f"{TITLE} {pd.project.project_id}-SCR-Rev {revision_letter(i)}, dated {long_date(revisions[i].issued_on)}"
     doc = document_id(pd)
     if not doc:
         return f"{TITLE} {missing('a revision, which the document ID needs')}"
-    issued_on = pd.project.reports.scr.revisions[-1].issued_on
-    return f"{TITLE} {doc}, dated {long_date(issued_on)}" if issued_on else f"{TITLE} {doc}"
+    return f"{TITLE} {doc}"
 
 
 def basis_of_opinions(pd: ProjectData) -> list[str]:

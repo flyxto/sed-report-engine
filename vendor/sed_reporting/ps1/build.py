@@ -102,13 +102,15 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
                 errors.append(Issue("error", "ps1", f"the PS1 can't be issued without the reviewing engineer's {label}"))
     # Everything the PS1 cites must be ready: the SCR revision issued, the drawing set reviewed.
     revisions = pd.project.reports.scr.revisions
-    if revisions and not revisions[-1].issued_on:
-        errors.append(Issue("error", "ps1", "the PS1 can't be issued while the Structural Calculations Report "
-                                            "revision it cites is a draft: issue that revision first"))
+    # It cites the latest issued SCR revision, so a newer draft revision does not block it.
+    scr_issued = any(r.issued_on for r in revisions)
+    if revisions and not scr_issued:
+        errors.append(Issue("error", "ps1", "the PS1 can't be issued before a Structural Calculations Report "
+                                            "revision has been issued: issue one first"))
     if pd.drawing_set is None:
         errors.append(Issue("error", "ps1", "the PS1 can't be issued before the drawing set it cites has a "
                                             "completed review (drawingReviews)"))
-    elif revisions and revisions[-1].issued_on and (changes := pd.scr_out_of_date):
+    elif scr_issued and (changes := pd.scr_out_of_date):
         errors.append(Issue("error", "ps1", f"the PS1 can't be issued while the SCR revision it cites "
                                             f"({pd.scr_last_issued_label}) cites drawings that have since been "
                                             f"revised ({'; '.join(changes)}): issue a new SCR revision first"))
@@ -132,4 +134,4 @@ def ps1_citations(pd: ProjectData) -> dict[str, str]:
     SCR's latest revision and the drawing set's. The portal stores them on the
     revision it issues (citesCalculations, citesDrawings), so a later SCR or
     drawing revision shows the PS1 is out of date."""
-    return {"calculations": document_id(pd) or "", "drawings": pd.drawing_set.reference if pd.drawing_set else ""}
+    return {"calculations": pd.scr_issued_id or document_id(pd) or "", "drawings": pd.drawing_set.reference if pd.drawing_set else ""}

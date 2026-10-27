@@ -782,10 +782,9 @@ class ProjectData:
                 out.append(Issue("warning", "ps1", f"the portal does not send the firm's {', '.join(missing)} yet "
                                                    "(ps1CertificateData)"))
         revisions = p.reports.scr.revisions
-        if revisions and not revisions[-1].issued_on:
-            out.append(Issue("warning", "ps1", "the PS1 cites the Structural Calculations Report's Rev "
-                                               f"{revision_letter(len(revisions) - 1)}, which is not issued yet; issue it "
-                                               "before the PS1"))
+        if revisions and not any(r.issued_on for r in revisions):
+            out.append(Issue("warning", "ps1", "the PS1 cites the Structural Calculations Report, which has no "
+                                               "issued revision yet; issue one before the PS1"))
         if not p.drawing_reviews:
             out.append(Issue("warning", "ps1", "the PS1 cites the drawing set, which has no completed review yet; "
                                                "complete it before issuing the PS1"))
