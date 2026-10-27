@@ -35,7 +35,7 @@ from sed_reporting.project_data import Issue, ProjectData
 from sed_reporting.project_data.dates import nz_now
 from sed_reporting.ps1.document import build_document
 from sed_reporting.scr.build import Fetch, fetch_url
-from sed_reporting.scr.document import document_id
+from sed_reporting.scr.document import EQSE_LOGO_URL, document_id
 from sed_reporting.stamp import stamp_page_numbers
 
 
@@ -55,7 +55,11 @@ def _errors(pd: ProjectData) -> list[Issue]:
     return [i for i in pd.issues() if i.severity == "error" and i.report in ("ps1", "all")]
 
 
-def _render(pd: ProjectData, **kw) -> tuple[PdfWriter, object]:
+def _render(pd: ProjectData, fetch: Fetch = fetch_url, **kw) -> tuple[PdfWriter, object]:
+    try:
+        kw["logo"] = fetch(EQSE_LOGO_URL)
+    except Exception:  # noqa: BLE001 - the PS1 goes without the logo rather than being blocked
+        kw["logo"] = None
     theme = pdf_theme()
     body = io.BytesIO()
     render_pdf(build_document(pd, **kw), body, theme=theme)
@@ -117,7 +121,7 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
         raise Ps1Blocked([Issue("error", "ps1", str(e))]) from e
 
     issued_at = now or nz_now()
-    writer, _theme = _render(pd, signature=image, issued_at=issued_at)
+    writer, _theme = _render(pd, fetch, signature=image, issued_at=issued_at)
     writer.add_metadata({"/Title": f"{pd.ps1_document_id} - PS1 Design (issued {issued_at.date().isoformat()})"})
     lock(writer)
     return _bytes(writer), issued_at

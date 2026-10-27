@@ -24,11 +24,11 @@ from datetime import datetime
 
 from reporting import Column, DocMeta, InfoCard, ReportDocument, SectionHeader, render_html
 
-from sed_reporting.components import Bullets, Lines, PageBreak, Prose, Signature, SizedTable, Ticks, missing
+from sed_reporting.components import Bullets, Lines, LogoHeader, PageBreak, Prose, Signature, SizedTable, Ticks, missing
 from sed_reporting.fonts import preview_numbers_in_body_font, web_theme
 from sed_reporting.project_data import ProjectData
 from sed_reporting.project_data.dates import long_date, long_date_time, nz_now
-from sed_reporting.scr.document import calculations_cited, drawings_cited, geotechnical_report_cited
+from sed_reporting.scr.document import EQSE_LOGO_URL, calculations_cited, drawings_cited, geotechnical_report_cited
 
 TITLE = "Producer Statement – PS1 Design"
 FORM_VERSION = "PS1 - Design – January 2024 (Rev 01)"
@@ -46,7 +46,7 @@ def _or(value, label: str) -> str:
 
 
 def build_document(pd: ProjectData, *, signature: bytes | None = None, issued_at: datetime | None = None,
-                   now: datetime | None = None) -> ReportDocument:
+                   now: datetime | None = None, logo: bytes | None = None) -> ReportDocument:
     """The PS1 package. `signature` and `issued_at` are given on issue only."""
     p, ps1 = pd.project, pd.project.reports.ps1
     eng, cert = p.internal_reviewing_engineer, p.ps1_certificate_data
@@ -76,6 +76,7 @@ def build_document(pd: ProjectData, *, signature: bytes | None = None, issued_at
     pi = cert.issuer_pi_insurance_nzd if cert else None
     ace = cert.issuer_ace_nz_member if cert else None
     body += [
+        LogoHeader(logo_url=EQSE_LOGO_URL, logo=logo),
         SectionHeader(TITLE, level=2),
         InfoCard("Producer statement", [
             ("Building Code Clause(s)", clauses), ("Job number", p.project_id),

@@ -137,6 +137,29 @@ class CoverPage:
 
 
 @dataclass
+class LogoHeader:
+    """The firm's logo, left-aligned above the first heading (no page break)."""
+
+    logo_url: str = ""                                # the logo shown in the preview
+    logo: bytes | None = None                         # the fetched logo, for the PDF
+    height_mm: float = 16.0
+
+    def render_html(self, theme: Theme) -> str:
+        if not self.logo_url:
+            return ""
+        return f'<div style="margin-bottom:12px"><img alt="logo" src="{escape(self.logo_url)}" style="height:{self.height_mm}mm"></div>'
+
+    def render_pdf(self, theme: Theme) -> list[Flowable]:
+        if not self.logo:
+            return []
+        height = self.height_mm * mm
+        w, h = ImageReader(io.BytesIO(self.logo)).getSize()
+        image = Image(io.BytesIO(self.logo), width=height * w / h, height=height)
+        image.hAlign = "LEFT"
+        return [image, Spacer(1, 10)]
+
+
+@dataclass
 class PageBreak:
     def render_html(self, theme: Theme) -> str:
         return '<div class="page-break"></div>'
