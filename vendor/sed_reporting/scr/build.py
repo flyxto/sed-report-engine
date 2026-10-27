@@ -17,6 +17,14 @@ from sed_reporting.project_data import Issue, ProjectData
 
 Fetch = Callable[[str], bytes]
 
+# Cloudflare rejects Python's default agent (error 1010) on the public R2 files.
+_FETCH_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    ),
+}
+
 
 class ScrBlocked(ValueError):
     """The report can't be issued while errors remain; `issues` lists them."""
@@ -30,7 +38,8 @@ def fetch_url(url: str) -> bytes:
     """Download an element's calculation report (e.g. from Cloudflare R2)."""
     if not url.startswith("https://"):
         raise ValueError(f"refusing to fetch {url!r}: only https URLs are allowed")
-    with urllib.request.urlopen(url, timeout=30) as response:   # noqa: S310 - https enforced above
+    request = urllib.request.Request(url, headers=_FETCH_HEADERS)
+    with urllib.request.urlopen(request, timeout=30) as response:   # noqa: S310 - https enforced above
         return response.read()
 
 
