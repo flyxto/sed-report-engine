@@ -24,10 +24,13 @@ from __future__ import annotations
 
 import os
 
+import base64
+
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
+from reporting import ReportManifest, read_manifest, stamp_manifest
 from sed_report_engine import __version__
 from sed_report_engine.errors import EngineError
 from sed_report_engine.generate import Pdf, Preview, generate
@@ -39,10 +42,69 @@ class GenerateBody(BaseModel):
     project: dict = Field(..., description="Portal project, including elements.")
 
 
+class StampBody(BaseModel):
+    pdfBase64: str
+    id: str
+    module: str
+    elementType: str
+    title: str
+    reference: str = ""
+
+
+class FillReferenceBody(BaseModel):
+    pdfBase64: str
+    reference: str
+
+
 def require_secret(x_report_engine_secret: str | None = Header(default=None)) -> None:
     expected = os.environ.get("REPORT_ENGINE_SECRET", "").strip()
     if expected and x_report_engine_secret != expected:
         raise HTTPException(status_code=401, detail="report engine secret is missing or wrong")
+
+
+@app.post("/v1/stamp")
+def stamp_pdf(body: StampBody, _: None = Depends(require_secret)) -> Response:
+    """Write the calculation stamp onto an element PDF from an external engine."""
+    try:
+        raw = base64.b64decode(body.pdfBase64)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="pdfBase64 is not valid base64") from exc
+    stamped = stamp_manifest(
+        raw,
+        ReportManifest(
+            id=body.id,
+            module=body.module,
+            element_type=body.elementType,
+            title=body.title,
+            reference=body.reference,
+        ),
+    )
+    return Response(stamped, media_type="application/pdf")
+
+
+@app.post("/v1/fill-reference")
+def fill_reference(body: FillReferenceBody, _: None = Depends(require_secret)) -> Response:
+    """Put the section mark into a stamped calculation PDF that left reference blank."""
+    try:
+        raw = base64.b64decode(body.pdfBase64)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="pdfBase64 is not valid base64") from exc
+    current = read_manifest(raw)
+    if not isinstance(current, dict) or not current.get("title"):
+        raise HTTPException(status_code=400, detail="the calculation PDF has no stamp to add a reference to")
+    if str(current.get("reference") or "").strip():
+        return Response(raw, media_type="application/pdf")
+    stamped = stamp_manifest(
+        raw,
+        ReportManifest(
+            id=str(current.get("id") or ""),
+            module=str(current.get("module") or ""),
+            element_type=str(current.get("element_type") or ""),
+            title=str(current["title"]),
+            reference=body.reference,
+        ),
+    )
+    return Response(stamped, media_type="application/pdf")
 
 
 @app.get("/health")

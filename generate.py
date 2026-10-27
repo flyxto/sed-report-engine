@@ -92,7 +92,7 @@ def generate(kind: str, action: str, payload: dict, number: int | None = None) -
     try:
         result = _call(kind, action, handler, project, number)
     except HTTPException as exc:
-        if action == "pdf" and exc.status_code == 422:
+        if action == "pdf" and exc.status_code == 422 and isinstance(exc.detail, dict):
             body = draft_pdf(kind, project)
             if body:
                 notes = [
