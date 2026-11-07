@@ -109,20 +109,54 @@ class CoverPage:
     """Centred cover lines, followed by a page break."""
 
     lines: list[CoverLine] = field(default_factory=list)
+    logo_url: str = ""                                # the logo shown in the preview
+    logo: bytes | None = None                         # the fetched logo, for the PDF
+    logo_height_mm: float = 22.0
 
     def render_html(self, theme: Theme) -> str:
         rows = "".join(
             f'<div style="font-size:{l.size}pt;{"font-weight:bold;" if l.bold else ""}margin-bottom:{l.space_after}pt">'
             f"{escape(l.text)}</div>" for l in self.lines)
-        return f'<div style="text-align:center;padding:40px 0">{rows}</div><div class="page-break"></div>'
+        logo = (f'<img alt="logo" src="{escape(self.logo_url)}" style="height:{self.logo_height_mm}mm;margin-bottom:24px">'
+                if self.logo_url else "")
+        return f'<div style="text-align:center;padding:40px 0">{logo}{rows}</div><div class="page-break"></div>'
 
     def render_pdf(self, theme: Theme) -> list[Flowable]:
-        out: list[Flowable] = [Spacer(1, 120)]
+        out: list[Flowable] = []
+        if self.logo:
+            height = self.logo_height_mm * mm
+            w, h = ImageReader(io.BytesIO(self.logo)).getSize()
+            out += [Spacer(1, 40), Image(io.BytesIO(self.logo), width=height * w / h, height=height), Spacer(1, 40)]
+        else:
+            out.append(Spacer(1, 120))
         for l in self.lines:
             style = body_style(theme, name="cover", size=l.size, bold=l.bold, align=TA_CENTER,
                                color=theme.primary if l.bold else None)
             out += [Paragraph(escape(l.text), style), Spacer(1, l.space_after)]
         return out + [RLPageBreak()]
+
+
+@dataclass
+class LogoHeader:
+    """The firm's logo, left-aligned above the first heading (no page break)."""
+
+    logo_url: str = ""                                # the logo shown in the preview
+    logo: bytes | None = None                         # the fetched logo, for the PDF
+    height_mm: float = 16.0
+
+    def render_html(self, theme: Theme) -> str:
+        if not self.logo_url:
+            return ""
+        return f'<div style="margin-bottom:12px"><img alt="logo" src="{escape(self.logo_url)}" style="height:{self.height_mm}mm"></div>'
+
+    def render_pdf(self, theme: Theme) -> list[Flowable]:
+        if not self.logo:
+            return []
+        height = self.height_mm * mm
+        w, h = ImageReader(io.BytesIO(self.logo)).getSize()
+        image = Image(io.BytesIO(self.logo), width=height * w / h, height=height)
+        image.hAlign = "LEFT"
+        return [image, Spacer(1, 10)]
 
 
 @dataclass

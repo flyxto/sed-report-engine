@@ -35,7 +35,7 @@ from sed_reporting.project_data import Issue, ProjectData
 from sed_reporting.project_data.dates import nz_now
 from sed_reporting.ps1.document import build_document
 from sed_reporting.scr.build import Fetch, fetch_url
-from sed_reporting.scr.document import document_id
+from sed_reporting.scr.document import EQSE_LOGO_URL, document_id
 from sed_reporting.stamp import stamp_page_numbers
 
 
@@ -55,7 +55,11 @@ def _errors(pd: ProjectData) -> list[Issue]:
     return [i for i in pd.issues() if i.severity == "error" and i.report in ("ps1", "all")]
 
 
-def _render(pd: ProjectData, **kw) -> tuple[PdfWriter, object]:
+def _render(pd: ProjectData, fetch: Fetch = fetch_url, **kw) -> tuple[PdfWriter, object]:
+    try:
+        kw["logo"] = fetch(EQSE_LOGO_URL)
+    except Exception:  # noqa: BLE001 - the PS1 goes without the logo rather than being blocked
+        kw["logo"] = None
     theme = pdf_theme()
     body = io.BytesIO()
     render_pdf(build_document(pd, **kw), body, theme=theme)
@@ -99,14 +103,15 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
     # The PS1 cites the last issued calculations. A later unissued draft is not
     # that version, so it does not have to be finished first.
     revisions = pd.project.reports.scr.revisions
-    issued = [r for r in revisions if r.issued_on]
-    if revisions and not issued:
-        errors.append(Issue("error", "ps1", "the PS1 can't be issued while the Structural Calculations Report "
-                                            "revision it cites is a draft: issue that revision first"))
+    # It cites the latest issued SCR revision, so a newer draft revision does not block it.
+    scr_issued = any(r.issued_on for r in revisions)
+    if revisions and not scr_issued:
+        errors.append(Issue("error", "ps1", "the PS1 can't be issued before a Structural Calculations Report "
+                                            "revision has been issued: issue one first"))
     if pd.drawing_set is None:
         errors.append(Issue("error", "ps1", "the PS1 can't be issued before the drawing set it cites has a "
                                             "completed review (drawingReviews)"))
-    elif issued and (changes := pd.scr_out_of_date):
+    elif scr_issued and (changes := pd.scr_out_of_date):
         errors.append(Issue("error", "ps1", f"the PS1 can't be issued while the SCR revision it cites "
                                             f"({pd.scr_last_issued_label}) cites drawings that have since been "
                                             f"revised ({'; '.join(changes)}): issue a new SCR revision first"))
@@ -119,7 +124,7 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
         raise Ps1Blocked([Issue("error", "ps1", str(e))]) from e
 
     issued_at = now or nz_now()
-    writer, _theme = _render(pd, signature=image, issued_at=issued_at)
+    writer, _theme = _render(pd, fetch, signature=image, issued_at=issued_at)
     writer.add_metadata({"/Title": f"{pd.ps1_document_id} - PS1 Design (issued {issued_at.date().isoformat()})"})
     lock(writer)
     return _bytes(writer), issued_at
