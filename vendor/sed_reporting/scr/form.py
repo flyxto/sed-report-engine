@@ -1,7 +1,9 @@
 """What an edit form for the Structural Calculations Report needs to know,
 worked out on the server so no front end has to re-implement it:
 
-    documentId      the derived document ID ("P260703-SCR-Rev A"), shown read-only
+    documentId      the final version's document ID ("P260703-SCR-Rev A"), shown
+                    read-only. A later unissued draft does not replace it
+    releasedDocumentId  the last issued revision's ID, or None when none is issued
     revisions       per revision: its letter, its date as printed, and whether it
                     is issued (issued ones are locked; only a draft's description
                     can be edited)
@@ -32,7 +34,7 @@ import typing
 from pydantic import BaseModel
 
 from sed_reporting.scr.document import (
-    basis_of_opinions, design_item_title, document_id, long_date, person_label, report_date, revision_letter,
+    basis_of_opinions, design_item_title, long_date, person_label, revision_letter, shown_document_id,
 )
 from sed_reporting.project_data import ProjectData
 from sed_reporting.project_data.project import ConcreteDurability, ScrInputs, FoundationsInputs, SteelDurability, SteelFixings
@@ -55,10 +57,12 @@ def _camel(snake: str) -> str:
 
 def form_context(pd: ProjectData) -> dict:
     d = pd.defaults.live_loads
-    revisions, day = pd.project.reports.scr.revisions, report_date(pd)
+    revisions = pd.project.reports.scr.revisions
     return {
-        "documentId": document_id(pd),     # derived, shown read-only; None until a revision exists
-        "revisions": [{"revision": revision_letter(i), "date": long_date(r.issued_on or day),
+        "documentId": shown_document_id(pd),   # the issued final version; a later draft does not replace it
+        "releasedDocumentId": pd.scr_issued_id,
+        "revisions": [{"revision": revision_letter(i),
+                       "date": long_date(r.issued_on) if r.issued_on else "",
                        "issued": r.issued_on is not None} for i, r in enumerate(revisions)],
         "nextRevision": revision_letter(len(revisions)),
         "outOfDate": pd.scr_out_of_date,

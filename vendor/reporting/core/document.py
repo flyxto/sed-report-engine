@@ -19,6 +19,7 @@ class DocMeta:
     site_address: str = ""
     engineer: str = ""
     date: str = ""
+    version: str = ""      # revision label, when a report prints one; unused by the engines
     header_text: str = ""     # running page header (top-centre)
     footer_left: str = ""     # running page footer (bottom-left)
     footer_note: str = ""     # second running footer line, under footer_left

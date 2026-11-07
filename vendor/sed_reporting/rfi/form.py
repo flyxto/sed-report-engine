@@ -44,12 +44,13 @@ def form_context(pd: ProjectData, number: int) -> dict:
             "drawings": {"reference": ds.reference if ds else None,
                          "revisedSinceReceived": bool(r) and any(d.completed_at > r.received_at
                                                                  for d in p.drawing_reviews)},
-            "calculations": {"reference": document_id(pd),
-                             "issued": bool(scr) and scr[-1].issued_on is not None,
-                             "revisedSinceReceived": bool(r) and bool(scr) and scr[-1].issued_on is not None
-                                                     and scr[-1].issued_on >= nz_date(r.received_at),
+            "calculations": {"reference": pd.scr_issued_id or document_id(pd),
+                             "issued": bool(pd.scr_issued_id),
+                             "revisedSinceReceived": bool(r) and bool(pd.scr_issued_id)
+                                                     and next(rev.issued_on for rev in reversed(scr) if rev.issued_on)
+                                                     >= nz_date(r.received_at),
                              "draftRevision": (f"Rev {revision_letter(len(scr) - 1)}"
-                                               if scr and scr[-1].issued_on is None else None)},
+                                               if scr and not pd.scr_issued_id else None)},
             "ps1": {"reference": pd.ps1_document_id, "issued": pd.ps1_issued_at is not None,
                     "revisedSinceReceived": bool(r) and any(x.issued_at and x.issued_at > r.received_at
                                                             for x in p.reports.ps1.revisions),

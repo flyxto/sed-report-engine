@@ -115,16 +115,37 @@ def geotechnical_report_cited(pd: ProjectData) -> str | None:
     return g.author_company + (f" ({details})" if details else "")
 
 
+def shown_document_id(pd: ProjectData) -> str | None:
+    """The document ID printed as the final version. A later revision that is
+    still a draft does not replace the last issued revision."""
+    revisions = pd.project.reports.scr.revisions
+    if revisions and revisions[-1].issued_on is None and (released := pd.scr_issued_id):
+        return released
+    return document_id(pd)
+
+
+def shown_report_date(pd: ProjectData, today: date | None = None) -> date:
+    """The date printed on the final version. While a later draft is open, that
+    stays the last issued revision's date."""
+    revisions = pd.project.reports.scr.revisions
+    if revisions and revisions[-1].issued_on is None and (issued := [r for r in revisions if r.issued_on]):
+        return issued[-1].issued_on
+    return report_date(pd, today)
+
+
 def calculations_cited(pd: ProjectData) -> str:
-    """This report as the PS1 and an RFI response cite it: "Structural
-    Calculations Report P260703-SCR-Rev B, dated 10 October 2026" (the latest
-    revision). A draft revision has no date yet, so none is printed; nothing
-    citing it can be issued until it is."""
+    """This report as the PS1 and an RFI response cite it. The final version is
+    the last issued revision: a later draft is not cited and does not have to
+    be finished first. When nothing is issued yet, the draft is named without
+    a date."""
+    released = pd.scr_issued_id
+    if released:
+        issued_on = next(r.issued_on for r in reversed(pd.project.reports.scr.revisions) if r.issued_on)
+        return f"{TITLE} {released}, dated {long_date(issued_on)}"
     doc = document_id(pd)
     if not doc:
         return f"{TITLE} {missing('a revision, which the document ID needs')}"
-    issued_on = pd.project.reports.scr.revisions[-1].issued_on
-    return f"{TITLE} {doc}, dated {long_date(issued_on)}" if issued_on else f"{TITLE} {doc}"
+    return f"{TITLE} {doc}"
 
 
 def basis_of_opinions(pd: ProjectData) -> list[str]:
@@ -155,8 +176,10 @@ def build_document(pd: ProjectData, today: date | None = None) -> ReportDocument
     engineer = (p.internal_reviewing_engineer.name if p.internal_reviewing_engineer
                 else cert.signed_by_name if cert else "")
     description = p.project_description or p.name
-    day = report_date(pd, today)   # the latest revision's issue date, or today (NZ) for a draft
+    day = shown_report_date(pd, today)   # the issued final version; a later draft does not take its date
     printed = long_date(day)
+    final_id = shown_document_id(pd)
+    open_draft = bool(scr.revisions) and scr.revisions[-1].issued_on is None and bool(pd.scr_issued_id)
 
     body: list = [
         CoverPage([
@@ -172,15 +195,19 @@ def build_document(pd: ProjectData, today: date | None = None) -> ReportDocument
         InfoCard("Document", [
             ("Report", f"{TITLE} for {description}"), ("Project", p.name), ("Reference", p.project_id),
             ("Address", p.site_address), ("Client", p.client.name),
-            ("Document ID", _or_missing(document_id(pd), "a revision, which the document ID needs")),
+            ("Document ID", _or_missing(final_id, "a revision, which the document ID needs")),
             ("Date", printed),
+            *(
+                [("Status", f"Rev {revision_letter(max(i for i, r in enumerate(scr.revisions) if r.issued_on))} stays the final version until Rev {revision_letter(len(scr.revisions) - 1)} is issued")]
+                if open_draft else ()
+            ),
             # One engineer: with the calculations and reporting automated, the
             # project's reviewing engineer both prepares and reviews the report.
             ("Prepared and reviewed by",
              person_label(p.internal_reviewing_engineer) or missing("reviewing engineer, from the portal")),
         ]),
         DataTable([Column("Revision"), Column("Description"), Column("Date")],
-                  [[revision_letter(i), r.description, long_date(r.issued_on or day)]
+                  [[revision_letter(i), r.description, long_date(r.issued_on) if r.issued_on else "Draft"]
                    for i, r in enumerate(scr.revisions)]
                   or [[missing("revision"), "", ""]], autosize=True),
 
@@ -229,7 +256,7 @@ def build_document(pd: ProjectData, today: date | None = None) -> ReportDocument
 
     meta = DocMeta(title=TITLE, reference=p.project_id, site_address=p.site_address, engineer=engineer,
                    date=printed, header_text=f"{p.name} – {TITLE}",
-                   footer_left=document_id(pd) or p.project_id)
+                   footer_left=final_id or p.project_id)
     return ReportDocument(meta=meta, body=body)
 
 
