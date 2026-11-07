@@ -100,7 +100,8 @@ def issue_ps1(pd: ProjectData, fetch: Fetch = fetch_url, now: datetime | None = 
                              ("CPEng number (internalReviewingEngineer.cpengNumber)", eng.cpeng_number)):
             if not value:
                 errors.append(Issue("error", "ps1", f"the PS1 can't be issued without the reviewing engineer's {label}"))
-    # Everything the PS1 cites must be ready: the SCR revision issued, the drawing set reviewed.
+    # The PS1 cites the last issued calculations. A later unissued draft is not
+    # that version, so it does not have to be finished first.
     revisions = pd.project.reports.scr.revisions
     # It cites the latest issued SCR revision, so a newer draft revision does not block it.
     scr_issued = any(r.issued_on for r in revisions)
@@ -134,4 +135,5 @@ def ps1_citations(pd: ProjectData) -> dict[str, str]:
     SCR's latest revision and the drawing set's. The portal stores them on the
     revision it issues (citesCalculations, citesDrawings), so a later SCR or
     drawing revision shows the PS1 is out of date."""
-    return {"calculations": pd.scr_issued_id or document_id(pd) or "", "drawings": pd.drawing_set.reference if pd.drawing_set else ""}
+    return {"calculations": pd.scr_issued_id or document_id(pd) or "",
+            "drawings": pd.drawing_set.reference if pd.drawing_set else ""}

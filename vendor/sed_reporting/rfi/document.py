@@ -64,14 +64,14 @@ def as_submitted(pd: ProjectData, r) -> AsSubmitted:
 
     drawings      the next revision if an answer revises them and no review has
                   been completed since the RFI was received; else the current one
-    calculations  the SCR's draft revision if there is one; else the next
-                  revision if the RFI revises the calculations and none was
-                  issued since it was received, or if the SCR cites drawings
-                  other than those above; else the latest
-    PS1           its draft revision if there is one; else the next revision if
-                  an answer revises it and none was issued since the RFI was
-                  received, or if the issued one cites other SCR or drawing
-                  revisions than those above (or there is none); else the latest
+    calculations  the last issued SCR revision. A later unissued draft is not
+                  the final version. When nothing is issued, or a newer revision
+                  is still required, the open draft (or the next letter) is cited
+                  without a date
+    PS1           the last issued PS1 revision. A later unissued draft is not the
+                  final version. When nothing is issued, or a newer revision is
+                  still required, the open draft (or the next letter) is cited
+                  without a date
     """
     p, pid = pd.project, pd.project.project_id
     reviews = p.drawing_reviews
@@ -82,24 +82,34 @@ def as_submitted(pd: ProjectData, r) -> AsSubmitted:
     drawings = next_drawings_cited(pd) if pending else drawings_cited(pd)
 
     scr = p.reports.scr.revisions
-    if scr and scr[-1].issued_on is None:                      # a draft, to be issued before the letter
-        scr_index, scr_date = len(scr) - 1, None
+    issued_scr = [(i, rev) for i, rev in enumerate(scr) if rev.issued_on]
+    calcs_revised = any(it.calculations == "revised" for it in r.items)
+    if not issued_scr:
+        scr_index, scr_date = (len(scr) - 1 if scr else 0), None
     else:
-        calcs_revised = any(it.calculations == "revised" for it in r.items)
-        needs_new = (not scr or (calcs_revised and scr[-1].issued_on < nz_date(r.received_at))
-                     or (scr[-1].cites_drawings or "") != drawings_ref)
-        scr_index, scr_date = (len(scr), None) if needs_new else (len(scr) - 1, scr[-1].issued_on)
+        last_i, last = issued_scr[-1]
+        needs_new = ((calcs_revised and last.issued_on < nz_date(r.received_at))
+                     or (last.cites_drawings or "") != drawings_ref)
+        if needs_new:
+            scr_index, scr_date = (len(scr) - 1 if scr[-1].issued_on is None else len(scr)), None
+        else:
+            scr_index, scr_date = last_i, last.issued_on
     scr_ref = f"{pid}-SCR-Rev {revision_letter(scr_index)}"
     calculations = f"{SCR_TITLE} {scr_ref}" + (f", dated {long_date(scr_date)}" if scr_date else "")
 
     ps1 = p.reports.ps1.revisions
-    if ps1 and ps1[-1].issued_at is None:                      # a draft, to be issued before the letter
-        ps1_index, ps1_issued = len(ps1) - 1, None
+    issued_ps1 = [(i, rev) for i, rev in enumerate(ps1) if rev.issued_at]
+    if not issued_ps1:
+        ps1_index, ps1_issued = (len(ps1) - 1 if ps1 else 0), None
     else:
+        last_i, last = issued_ps1[-1]
         ps1_revised = any(it.ps1 == "revised" for it in r.items)
-        needs_new = (not ps1 or (ps1_revised and ps1[-1].issued_at <= r.received_at)
-                     or ps1[-1].cites_calculations != scr_ref or ps1[-1].cites_drawings != drawings_ref)
-        ps1_index, ps1_issued = (len(ps1), None) if needs_new else (len(ps1) - 1, ps1[-1].issued_at)
+        needs_new = ((ps1_revised and last.issued_at <= r.received_at)
+                     or last.cites_calculations != scr_ref or last.cites_drawings != drawings_ref)
+        if needs_new:
+            ps1_index, ps1_issued = (len(ps1) - 1 if ps1[-1].issued_at is None else len(ps1)), None
+        else:
+            ps1_index, ps1_issued = last_i, last.issued_at
     ps1_text = f"{PS1_TITLE} {pid}-PS1-Rev {revision_letter(ps1_index)}" + \
         (f", issued {long_date(ps1_issued.date())}" if ps1_issued else "")
     return AsSubmitted(drawings, calculations, ps1_text)

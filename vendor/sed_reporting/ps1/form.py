@@ -47,6 +47,7 @@ def form_context(pd: ProjectData) -> dict:
     return {
         "issuedAt": pd.ps1_issued_at.isoformat() if pd.ps1_issued_at else None,
         "documentId": pd.ps1_document_id,
+        "releasedDocumentId": pd.ps1_issued_id,
         "revisions": [{"revision": revision_letter(i), "description": r.description, "issued": r.issued_at is not None,
                        "issuedAt": r.issued_at.isoformat() if r.issued_at else None}
                       for i, r in enumerate(ps1.revisions)],

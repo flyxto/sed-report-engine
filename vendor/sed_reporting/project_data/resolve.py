@@ -405,12 +405,9 @@ class ProjectData:
                                              "construction review to certify"))
         if not p.building_consent_number:
             out.append(Issue("error", "ps4", "the project has no consent number (buildingConsentNumber)"))
-        # The PS1 it covers: issued, and citing the documents as they now stand.
-        ps1 = p.reports.ps1.revisions
+        # The PS1 it covers: the last issued revision. A later unissued draft is not that version.
         if not self.ps1_issued_id:
             out.append(Issue("error", "ps4", "the PS4 covers the PS1, which is not issued yet"))
-        elif ps1[-1].issued_at is None:
-            out.append(Issue("error", "ps4", f"the PS1's {self.ps1_revision_label} is a draft: issue it first"))
         elif changes := self.ps1_out_of_date:
             out.append(Issue("error", "ps4", f"the PS1 it covers ({self.ps1_last_issued_label}) cites documents that "
                                              f"have since been revised ({'; '.join(changes)}): issue a new PS1 "
@@ -487,16 +484,17 @@ class ProjectData:
             if it.calculations and not scr:
                 out.append(Issue("error", "rfi", f"{where}: cites the calculations, but the Structural Calculations "
                                                  "Report has no revision"))
-            elif it.calculations and not scr[-1].issued_on:
+            elif it.calculations and not any(rev.issued_on for rev in scr):
                 out.append(Issue("error", "rfi", f"{where}: cites the Structural Calculations Report's {scr_latest}, "
                                                  "which is not issued yet; issue it first"))
-            elif it.calculations == "revised" and scr[-1].issued_on < nz_date(r.received_at):
+            elif it.calculations == "revised" and (issued_scr := [rev for rev in scr if rev.issued_on]) \
+                    and issued_scr[-1].issued_on < nz_date(r.received_at):
                 out.append(Issue("error", "rfi", f"{where}: the calculations are marked as revised, but no revision "
                                                  "of the Structural Calculations Report has been issued since the "
                                                  f"RFI was received ({received}); add and issue one"))
             if it.ps1 and not p.reports.ps1.revisions:
                 out.append(Issue("error", "rfi", f"{where}: cites the PS1, which has no revision yet"))
-            elif it.ps1 and self.ps1_issued_at is None:
+            elif it.ps1 and self.ps1_issued_id is None:
                 out.append(Issue("error", "rfi", f"{where}: cites the PS1's {self.ps1_revision_label}, which is not "
                                                  "issued yet; issue it first"))
             elif it.ps1 == "revised" and not any(x.issued_at and x.issued_at > r.received_at
